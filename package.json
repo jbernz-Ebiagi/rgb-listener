@@ -1,0 +1,16 @@
+{
+  "name": "rgb-listener",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/es6-shim": "^0.31.39",
+    "ableton-js": "file:../../Ableton/ableton-js",
+    "ffi": "^2.3.0"
+  }
+}
