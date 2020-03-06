@@ -25,10 +25,10 @@ export class WootingRgb {
     initialize(){
 
         if(!wootingRgbLib.wooting_rgb_kbd_connected()){
-            console.log('no keyboard detected')
+            console.log('failed to connecto to keyboard rgb');
+        } else {
+            console.log('connected to keyboard rgb');
         }
-
-        // wootingRgbLib.wooting_rgb_array_auto_update(true)
         
         //initialize array
         this.colorArray = [];
@@ -38,6 +38,10 @@ export class WootingRgb {
             this.colorArray[row].push({r: 0, g: 0, b: 0})
           }
         }
+
+        this.updateRgb();
+
+        return this;
 
     }
 
