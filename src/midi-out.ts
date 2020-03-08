@@ -6,11 +6,17 @@ export default class MidiOut {
 
     initialize = () => {
         this.port = jzz().openMidiOut('IAC Driver Bus 1').or('MIDI-Out: Cannot open!');
+        console.log('midi port opened');
         return this;
     }
 
-    send = (channel: number, note: number) => {
+    sendNoteOn = (channel: number, note: number) => {
         this.port.noteOn(channel, note, 127);
+    }
+
+
+    sendNoteOff = (channel: number, note: number) => {
+        this.port.noteOff(channel, note, 127);
     }
 
 }

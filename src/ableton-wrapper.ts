@@ -19,11 +19,11 @@ export default class AbletonWrapper {
     }
 
     startUpdater() {
+        this.rgb.clear();
         this.updateInterval = setInterval(async () => {
-            this.rgb.clear()
             await this.updateLoops();
             this.rgb.update()
-        }, 200);
+        }, 250);
     }
 
     stopUpdater(){
@@ -35,27 +35,16 @@ export default class AbletonWrapper {
 
         const hasAvailableLoops = scenes.filter(scene => scene.raw.name == 'loop[]').length > 0;
         if(hasAvailableLoops){
-            setAllLoopKeys(this.rgb, 'loop_ready');
+            setAllLoopKeys(this.rgb, 'ready');
         }
         
         for(const scene of scenes){
             if(scene.raw.name.includes('loop')){
                 if(scene.raw.name != 'loop[]'){
                     const name = scene.raw.name;
-                    const loopKey = name.substring(name.indexOf('"') + 1, name.lastIndexOf('"'));
-
-                    const clipSlots = await scene.get('clip_slots');
-                    
-                    //Get loop status
-                    let status = 'loop_stopped';
-                    for(const clipSlot of clipSlots){
-                        if(clipSlot.raw.is_recording){
-                            status = 'loop_recording';
-                        } else if(clipSlot.raw.is_playing) {
-                            status = 'loop_playing';
-                        }
-                    }
-                    setKeyRgb(this.rgb, loopKey, status);
+                    const loopKey = name.substring(name.indexOf('[') + 1, name.lastIndexOf(']'));
+                    console.log(scene.raw.status)
+                    setKeyRgb(this.rgb, loopKey, scene.raw.status);
                 } 
             }
         }

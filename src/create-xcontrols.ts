@@ -1,0 +1,37 @@
+import { keyMap, IKey } from './maps/key-map';
+import { modifierMap } from './maps/modifier-map';
+
+
+const parseControl = (control:string, key:IKey) => {
+    return control.replace('{key_name}', key.key_name)
+}
+
+const rules = [];
+
+for(const key of keyMap){
+    if(key.x_control){
+        if(key.commands.on.includes("{mod_channel}")){
+            for(const mod in modifierMap){
+                if(key.x_control[mod]){
+                    const control = parseControl(key.x_control[mod], key);
+                    rules.push(`${mod}_${key.key_name} = NOTE, ${modifierMap[mod]+1}, ${key.hid_id}, 0, 0, ${control}`)
+                }
+            }
+        }
+        const control = parseControl(key.x_control['none'], key);
+        rules.push(`${key.key_name} = NOTE, ${2}, ${key.hid_id}, 0, 0, ${control}`)
+    }
+}
+
+const fs = require('fs');
+const path = require('path');
+
+const xcontrols = ['[X-CONTROLS]'].concat(rules).join('\n');
+
+fs.writeFile(path.resolve(__dirname, '../dist/X-Controls.txt'), xcontrols, () => {
+    console.log('--create xcontrols in dist');
+});
+
+fs.writeFile('/Users/justin/nativeKONTROL/ClyphX_Pro/X-Controls.txt', xcontrols, () => {
+    console.log('--create xcontrols in working dir');
+});

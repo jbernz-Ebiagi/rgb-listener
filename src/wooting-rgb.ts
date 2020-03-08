@@ -47,6 +47,7 @@ export default class WootingRgb {
                 col = ({r: 0, g: 0, b: 0});
             }
         }
+        console.log('cleared!')
     }
 
     update() {
@@ -55,7 +56,7 @@ export default class WootingRgb {
             dylibArray.push(col.r)
             dylibArray.push(col.g)
             dylibArray.push(col.b)
-          }))
+        }));
         const dylibBuffer = Uint8Array.from(dylibArray)
         
         wootingRgbLib.wooting_rgb_array_set_full(dylibBuffer);

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "reset": "ts-node src/reset-keyboard.ts"
+    "create-xcontrols": "ts-node src/create-xcontrols.ts"
   },
   "author": "",
   "license": "ISC",

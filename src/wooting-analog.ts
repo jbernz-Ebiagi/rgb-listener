@@ -1,5 +1,6 @@
 import Ebiagi from ".";
-import { keyMap, IKey } from './maps/key-map';
+import { getChannelFromModifiers }from './maps/modifier-map';
+import { keyMap, IKey } from "./maps/key-map";
 
 const ffi = require('ffi');
 const ref = require('ref');
@@ -79,7 +80,7 @@ export default class WootingAnalog {
             if(code > 0 && !this.codeBuffer.includes(code)){
                 const key = this.getKey(code);
                 if(key && key.commands.on){
-                    this.parent.command(key.commands.on.replace("{hid_id}", code.toString()));
+                    this.parent.command(this.parseCommand(key.commands.on, key));
                 }
             }
         });
@@ -87,10 +88,16 @@ export default class WootingAnalog {
             if(code > 0 && !newCodes.includes(code)){
                 const key = this.getKey(code);
                 if(key && key.commands.off){
-                    this.parent.command(key.commands.off.replace("{hid_id}", code.toString()));
+                    this.parent.command(this.parseCommand(key.commands.off, key));
                 }
             }
         });
+    }
+
+    parseCommand(command:string, key:IKey){
+        command = command.replace("{mod_channel}", getChannelFromModifiers(this.parent.modifiers));
+        command = command.replace("{hid_id}", key.hid_id.toString());
+        return command;
     }
 
     getKey(hidID){
