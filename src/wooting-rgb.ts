@@ -1,5 +1,6 @@
 const ffi = require('ffi');
 const ref = require('ref');
+import { IRgb } from './maps/rgb-map';
 
 // Define the functions from the rgb sdk
 // @ts-ignore
@@ -16,11 +17,9 @@ const wootingRgbLib = ffi.Library('./libs/libwooting-rgb-sdk.dylib', {
 const ROWS = 6;
 const COLUMNS = 21;
 
-export type rgb = {r: number, g: number, b: number}
+export default class WootingRgb {
 
-export class WootingRgb {
-
-    colorArray : rgb[][]
+    colorArray : IRgb[][]
 
     initialize(){
 
@@ -30,7 +29,6 @@ export class WootingRgb {
             console.log('connected to keyboard rgb');
         }
         
-        //initialize array
         this.colorArray = [];
         for(let row = 0; row < ROWS; row++) {
           this.colorArray.push([])
@@ -38,14 +36,20 @@ export class WootingRgb {
             this.colorArray[row].push({r: 0, g: 0, b: 0})
           }
         }
-
-        this.updateRgb();
+        this.update();
 
         return this;
-
+    }
+    
+    clear(){
+        for(const row of this.colorArray) {
+            for(let col of row){
+                col = ({r: 0, g: 0, b: 0});
+            }
+        }
     }
 
-    updateRgb() : void {
+    update() {
         const dylibArray = [];
         this.colorArray.forEach(row => row.forEach(col => {
             dylibArray.push(col.r)
@@ -53,12 +57,12 @@ export class WootingRgb {
             dylibArray.push(col.b)
           }))
         const dylibBuffer = Uint8Array.from(dylibArray)
-
+        
         wootingRgbLib.wooting_rgb_array_set_full(dylibBuffer);
         wootingRgbLib.wooting_rgb_array_update_keyboard();
     }
-    
-    resetKeyboard() : void {
+
+    reset() {
         wootingRgbLib.wooting_rgb_reset();
     }
 

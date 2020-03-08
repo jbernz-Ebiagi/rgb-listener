@@ -17,6 +17,8 @@
     "ffi": "^2.3.0",
     "jzz": "^1.0.2",
     "node-hid": "^1.2.0",
-    "node-hid-stream": "^1.1.0"
+    "node-hid-stream": "^1.1.0",
+    "ref-array": "^1.2.0",
+    "ref-struct": "^1.1.0"
   }
 }
