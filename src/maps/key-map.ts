@@ -122,6 +122,413 @@ export const keyMap:IKey[] = [
         column: 10,
     },
     {
+        key_name: 'hyphen',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 45,
+        row: 1,
+        column: 11,
+    },
+    {
+        key_name: 'equal_sign',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 46,
+        row: 1,
+        column: 12,
+    },
+    {
+        key_name: 'equal_sign',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 46,
+        row: 1,
+        column: 12,
+    },
+    {
+        key_name: 'q',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 20,
+        row: 2,
+        column: 1,
+    },
+    {
+        key_name: 'w',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 26,
+        row: 2,
+        column: 2,
+    },
+    {
+        key_name: 'e',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 8,
+        row: 2,
+        column: 3,
+    },
+    {
+        key_name: 'r',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 21,
+        row: 2,
+        column: 4,
+    },
+    {
+        key_name: 't',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 23,
+        row: 2,
+        column: 5,
+    },
+    {
+        key_name: 'y',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 28,
+        row: 2,
+        column: 6,
+    },
+    {
+        key_name: 'u',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 24,
+        row: 2,
+        column: 7,
+    },
+    {
+        key_name: 'i',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 12,
+        row: 2,
+        column: 8,
+    },
+    {
+        key_name: 'o',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 18,
+        row: 2,
+        column: 9,
+    },
+    {
+        key_name: 'p',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 19,
+        row: 2,
+        column: 10,
+    },
+    {
+        key_name: 'open_bracket',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 47,
+        row: 2,
+        column: 11,
+    },
+    {
+        key_name: 'close_bracket',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 48,
+        row: 2,
+        column: 12,
+    },
+    {
+        key_name: 'open_bracket',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 49,
+        row: 2,
+        column: 13,
+    },
+    {
+        key_name: 'a',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 4,
+        row: 3,
+        column: 1,
+    },
+    {
+        key_name: 's',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 22,
+        row: 3,
+        column: 2,
+    },
+    {
+        key_name: 'd',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 7,
+        row: 3,
+        column: 3,
+    },
+    {
+        key_name: 'f',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 9,
+        row: 3,
+        column: 4,
+    },
+    {
+        key_name: 'g',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 10,
+        row: 3,
+        column: 5,
+    },
+    {
+        key_name: 'h',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 11,
+        row: 3,
+        column: 6,
+    },
+    {
+        key_name: 'j',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 13,
+        row: 3,
+        column: 7,
+    },
+    {
+        key_name: 'k',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 14,
+        row: 3,
+        column: 8,
+    },
+    {
+        key_name: 'l',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 15,
+        row: 3,
+        column: 9,
+    },
+    {
+        key_name: 'semicolon',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 51,
+        row: 3,
+        column: 10,
+    },
+    {
+        key_name: 'quote',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 52,
+        row: 3,
+        column: 11,
+    },
+    {
+        key_name: 'z',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 29,
+        row: 4,
+        column: 2,
+    },
+    {
+        key_name: 'x',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 27,
+        row: 4,
+        column: 3,
+    },
+    {
+        key_name: 'c',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 6,
+        row: 4,
+        column: 4,
+    },
+    {
+        key_name: 'v',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 25,
+        row: 4,
+        column: 5,
+    },
+    {
+        key_name: 'b',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 5,
+        row: 4,
+        column: 6,
+    },
+    {
+        key_name: 'n',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 17,
+        row: 4,
+        column: 7,
+    },
+    {
+        key_name: 'm',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 16,
+        row: 4,
+        column: 8,
+    },
+    {
+        key_name: 'comma',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 54,
+        row: 4,
+        column: 9,
+    },
+    {
+        key_name: 'period',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 55,
+        row: 4,
+        column: 10,
+    },
+    {
+        key_name: 'slash',
+        commands: {
+            on: 'send_midi_on:{hid_id}',
+            off: 'send_midi_off:{hid_id}'
+        },
+        x_control: "select_loop {key_name}",
+        hid_id: 38,
+        row: 4,
+        column: 11,
+    },
+    {
         key_name: 'left_control',
         commands: {
             on: 'activate_modifier:ctrl',
