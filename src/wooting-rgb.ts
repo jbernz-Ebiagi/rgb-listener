@@ -47,7 +47,6 @@ export default class WootingRgb {
                 col = ({r: 0, g: 0, b: 0});
             }
         }
-        console.log('cleared!')
     }
 
     update() {
