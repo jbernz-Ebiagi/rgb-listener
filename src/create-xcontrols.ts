@@ -3,7 +3,7 @@ import { modifierMap } from './maps/modifier-map';
 
 
 const parseControl = (control:string, key:IKey) => {
-    return control.replace('{key_name}', key.key_name)
+    return control.replace(/{key_name}/g, key.key_name)
 }
 
 const rules = [];

@@ -11,7 +11,7 @@ export interface IKey {
 }
 
 const loopXControls = {
-    none: "select_loop {key_name}",
+    none: "select_loop {key_name} : deselect_loop {key_name}",
     lctrl: "clear_loop {key_name}",
     lshift: "stop_loop {key_name}",
 }
