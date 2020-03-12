@@ -1,8 +1,7 @@
 import { Ableton } from "ableton-js";
 import Ebiagi from ".";
 import WootingRgb from "./wooting-rgb";
-import { setAllLoopKeys, setKeyRgb } from "./rgb-functions";
-import { Scene } from "ableton-js/ns/scene";
+import { setAllLoopKeys, setKeyRgb,  } from "./rgb-functions";
 
 export default class AbletonWrapper {
 
@@ -24,7 +23,7 @@ export default class AbletonWrapper {
         this.updateInterval = setInterval(async () => {
             await this.updateLoops();
             this.rgb.update()
-        }, 250);
+        }, 50);
     }
 
     stopUpdater(){
@@ -32,40 +31,28 @@ export default class AbletonWrapper {
     }
 
     async updateLoops() {
-        const scenes = await this.ableton.song.get('scenes');
+        const data = await this.ableton.song.get('data');
 
-        const hasAvailableLoops = scenes.filter(scene => scene.raw.name == 'loop[]').length > 0;
-        if(hasAvailableLoops){
+        const { 
+            loops, 
+            has_empty_loops, 
+            fx 
+        } = data.raw;
+
+        if(has_empty_loops){
             setAllLoopKeys(this.rgb, 'dim-red');
         }
 
-        for(const scene of scenes){
-            if(scene.raw.name.includes('loop')){
+        for(const loop of loops){
+            setKeyRgb(this.rgb, loop.key_name, loop.color);
+        }
 
-                if(scene.raw.name != 'loop[]'){
-                    const name = scene.raw.name;
-                    const loopKey = name.substring(name.indexOf('[') + 1, name.lastIndexOf(']'));
-                    setKeyRgb(this.rgb, loopKey, getSceneColor(scene));
-                } 
-            }
+        if(data.raw.loops.length > 0){
+            setKeyRgb(this.rgb, 'tilde', 'gold');
+        } else {
+            setKeyRgb(this.rgb, 'tilde', 'dim-gold');
         }
     
     }
 
-}
-
-const colorIndex = {
-    9: 'blue',
-    12: 'pink',
-    56: 'red',
-    69: 'dim-red'
-}
-
-const getSceneColor = (scene) => {
-    if(scene.raw.status == 'playing' || scene.raw.status == 'recording'){
-        return colorIndex[scene.raw.color]
-    }
-    if(scene.raw.status == 'stopped'){
-        return 'dim-' + colorIndex[scene.raw.color]
-    }
 }

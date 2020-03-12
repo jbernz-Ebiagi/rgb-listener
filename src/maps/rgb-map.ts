@@ -12,5 +12,8 @@ export const rgbMap:{[key: string]:IRgb} = {
     'pink': {r: 255, g: 0, b: 153},
     'dim-pink': {r: 50, g: 0, b: 29},
     'blue': {r: 0, g: 134, b: 255},
-    'dim-blue': {r: 0, g: 29, b: 50}
+    'dim-blue': {r: 0, g: 29, b: 50},
+    'gold': {r: 149, g: 94, b: 0},
+    'dim-gold': {r: 10, g: 7, b: 0},
+    'white': {r: 255, g: 255, b: 255}
 }

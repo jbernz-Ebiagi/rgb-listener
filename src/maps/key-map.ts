@@ -18,6 +18,19 @@ const loopXControls = {
 
 export const keyMap:IKey[] = [
     {
+        key_name: 'tilde',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: {
+            none: "select_all_loops : deselect_all_loops",
+        },
+        hid_id: 53,
+        row: 1,
+        column: 0,
+    },
+    {
         key_name: '1',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
