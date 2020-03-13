@@ -5,6 +5,7 @@ export interface IKey {
         off?: string
     };
     x_control?: {};
+    param_name?: string;
     hid_id: number;
     row: number;
     column: number;
@@ -14,6 +15,12 @@ const loopXControls = {
     none: "select_loop {key_name} : deselect_loop {key_name}",
     lctrl: "clear_loop {key_name}",
     lshift: "stop_loop {key_name}",
+    lalt: "reset_loop_params {key_name}"
+}
+
+const fxXControls = {
+    none: "select_fx {param_name} : deselect_fx {param_name}",
+    lalt: "reset_fx_params {param_name}"
 }
 
 export const keyMap:IKey[] = [
@@ -25,6 +32,8 @@ export const keyMap:IKey[] = [
         },
         x_control: {
             none: "select_all_loops : deselect_all_loops",
+            lshift: "stop_all_loops",
+            lalt: "reset_all_loop_params"
         },
         hid_id: 53,
         row: 1,
@@ -526,6 +535,80 @@ export const keyMap:IKey[] = [
         column: 11,
     },
     {
+        key_name: 'spacebar',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: {
+            none: 'mute_all_loops : unmute_all_loops'
+        },
+        hid_id: 44,
+        row: 5,
+        column: 5,
+    },
+    {
+        key_name: 'f1',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: fxXControls,
+        param_name: 'FX1',
+        hid_id: 58,
+        row: 0,
+        column: 2,
+    },
+    {
+        key_name: 'f2',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: fxXControls,
+        param_name: 'FX2',
+        hid_id: 59,
+        row: 0,
+        column: 3,
+    },
+    {
+        key_name: 'f3',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: fxXControls,
+        param_name: 'FX3',
+        hid_id: 60,
+        row: 0,
+        column: 4,
+    },
+    {
+        key_name: 'f4',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: fxXControls,
+        param_name: 'FX4',
+        hid_id: 61,
+        row: 0,
+        column: 5,
+    },
+    {
+        key_name: 'escape',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: {
+            lalt: 'reset_all_fx_params'
+        },
+        hid_id: 41,
+        row: 0,
+        column: 0,
+    },
+    {
         key_name: 'left_shift',
         commands: {
             on: 'activate_modifier:lshift',
@@ -544,6 +627,16 @@ export const keyMap:IKey[] = [
         hid_id: 224,
         row: 5,
         column: 0,
+    },
+    {
+        key_name: 'left_alt',
+        commands: {
+            on: 'activate_modifier:lalt',
+            off: 'deactivate_modifier:lalt'
+        },
+        hid_id: 226,
+        row: 5,
+        column: 2,
     },
     {
         key_name: 'right_control',

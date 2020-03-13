@@ -3,7 +3,8 @@ import { modifierMap } from './maps/modifier-map';
 
 
 const parseControl = (control:string, key:IKey) => {
-    return control.replace(/{key_name}/g, key.key_name)
+    control = control.replace(/{key_name}/g, key.key_name);
+    return control.replace(/{param_name}/g, key.param_name);
 }
 
 const rules = [];
@@ -18,8 +19,10 @@ for(const key of keyMap){
                 }
             }
         }
-        const control = parseControl(key.x_control['none'], key);
-        rules.push(`${key.key_name} = NOTE, ${2}, ${key.hid_id}, 0, 0, ${control}`)
+        if(key.x_control['none']){
+            const control = parseControl(key.x_control['none'], key);
+            rules.push(`${key.key_name} = NOTE, ${2}, ${key.hid_id}, 0, 0, ${control}`)
+        }
     }
 }
 

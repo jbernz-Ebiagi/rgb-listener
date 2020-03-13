@@ -1,7 +1,7 @@
 import { Ableton } from "ableton-js";
 import Ebiagi from ".";
 import WootingRgb from "./wooting-rgb";
-import { setAllLoopKeys, setKeyRgb,  } from "./rgb-functions";
+import { setAllLoopKeys, setKeyRgb, setKeyParamRgb} from "./rgb-functions";
 
 export default class AbletonWrapper {
 
@@ -21,17 +21,18 @@ export default class AbletonWrapper {
     startUpdater() {
         this.rgb.clear();
         this.updateInterval = setInterval(async () => {
-            await this.updateLoops();
+            await this.updateData();
             this.rgb.update()
-        }, 50);
+        }, 100);
     }
 
     stopUpdater(){
         clearInterval(this.updateInterval);
     }
 
-    async updateLoops() {
+    async updateData() {
         const data = await this.ableton.song.get('data');
+        // console.log(data.raw.fx)
 
         const { 
             loops, 
@@ -47,10 +48,21 @@ export default class AbletonWrapper {
             setKeyRgb(this.rgb, loop.key_name, loop.color);
         }
 
+        for(const fxO of fx){
+            setKeyParamRgb(this.rgb, fxO.name, fxO.color);
+        }
+
         if(data.raw.loops.length > 0){
             setKeyRgb(this.rgb, 'tilde', 'gold');
         } else {
             setKeyRgb(this.rgb, 'tilde', 'dim-gold');
+        }
+
+
+        if(data.raw.fx.length > 0){
+            setKeyRgb(this.rgb, 'escape', 'dim-purple');
+        } else {
+            setKeyRgb(this.rgb, 'escape', 'dark');
         }
     
     }
