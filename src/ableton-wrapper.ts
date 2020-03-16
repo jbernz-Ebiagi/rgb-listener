@@ -32,12 +32,13 @@ export default class AbletonWrapper {
 
     async updateData() {
         const data = await this.ableton.song.get('data');
-        // console.log(data.raw.fx)
+        console.log(data.raw)
 
         const { 
             loops, 
             has_empty_loops, 
-            fx 
+            fx ,
+            cbord
         } = data.raw;
 
         if(has_empty_loops){
@@ -52,12 +53,15 @@ export default class AbletonWrapper {
             setKeyParamRgb(this.rgb, fxO.name, fxO.color);
         }
 
+        for(const c of cbord){
+            setKeyParamRgb(this.rgb, c.name, c.color);
+        }
+
         if(data.raw.loops.length > 0){
             setKeyRgb(this.rgb, 'tilde', 'gold');
         } else {
             setKeyRgb(this.rgb, 'tilde', 'dim-gold');
         }
-
 
         if(data.raw.fx.length > 0){
             setKeyRgb(this.rgb, 'escape', 'dim-purple');

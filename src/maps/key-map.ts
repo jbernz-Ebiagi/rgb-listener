@@ -23,6 +23,10 @@ const fxXControls = {
     lalt: "reset_fx_params {param_name}"
 }
 
+const cbXControls = {
+    none: "select_cbord {param_name}",
+}
+
 export const keyMap:IKey[] = [
     {
         key_name: 'tilde',
@@ -594,6 +598,54 @@ export const keyMap:IKey[] = [
         hid_id: 61,
         row: 0,
         column: 5,
+    },
+    {
+        key_name: 'f5',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: cbXControls,
+        param_name: 'CB1',
+        hid_id: 62,
+        row: 0,
+        column: 6,
+    },
+    {
+        key_name: 'f6',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: cbXControls,
+        param_name: 'CB2',
+        hid_id: 63,
+        row: 0,
+        column: 7,
+    },
+    {
+        key_name: 'f7',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: cbXControls,
+        param_name: 'CB3',
+        hid_id: 64,
+        row: 0,
+        column: 8,
+    },
+    {
+        key_name: 'f8',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: cbXControls,
+        param_name: 'CB4',
+        hid_id: 65,
+        row: 0,
+        column: 9,
     },
     {
         key_name: 'escape',

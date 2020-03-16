@@ -8,7 +8,7 @@ export const rgbMap:{[key: string]:IRgb} = {
     'dim-red': {r: 10, g: 0, b: 0},
     'red': {r: 255, g: 0, b: 0},
     'green': {r: 0, g: 255, b: 0},
-    'dim-green': {r: 0, g: 10, b: 0},
+    'dim-green': {r: 0, g: 50, b: 0},
     'pink': {r: 255, g: 0, b: 153},
     'dim-pink': {r: 50, g: 0, b: 29},
     'blue': {r: 0, g: 134, b: 255},
@@ -19,5 +19,7 @@ export const rgbMap:{[key: string]:IRgb} = {
     'dim-white': {r: 55, g: 55, b: 55},
     'purple': {r: 89, g: 0, b: 135},
     'dim-purple': {r: 20, g: 0, b: 31},
-    'dark': {r:0, g: 0, b: 0}
+    'dark': {r:0, g: 0, b: 0},
+    'lavender': {r:221, g: 154, b: 255},
+    'dim-lavender': {r:64, g: 44, b: 73}
 }
