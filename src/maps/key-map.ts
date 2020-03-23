@@ -25,6 +25,7 @@ const fxXControls = {
 
 const cbXControls = {
     none: "select_cbord {param_name}",
+    lalt: "reset_cbord_params {param_name}",
 }
 
 export const keyMap:IKey[] = [
