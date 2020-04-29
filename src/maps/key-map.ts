@@ -559,7 +559,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: fxXControls,
-        param_name: 'FX1',
+        param_name: 'GFX1',
         hid_id: 58,
         row: 0,
         column: 2,
@@ -571,7 +571,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: fxXControls,
-        param_name: 'FX2',
+        param_name: 'GFX2',
         hid_id: 59,
         row: 0,
         column: 3,
@@ -583,7 +583,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: fxXControls,
-        param_name: 'FX3',
+        param_name: 'GFX3',
         hid_id: 60,
         row: 0,
         column: 4,
@@ -595,7 +595,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: fxXControls,
-        param_name: 'FX4',
+        param_name: 'GFX4',
         hid_id: 61,
         row: 0,
         column: 5,
@@ -694,7 +694,7 @@ export const keyMap:IKey[] = [
     {
         key_name: 'right_control',
         commands: {
-            on: 'toggle_keyboard:'
+            off: 'toggle_keyboard:'
         },
         hid_id: 228,
         row: 5,

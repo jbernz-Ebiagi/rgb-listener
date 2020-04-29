@@ -28,6 +28,15 @@ export const rgbMap:{[key: string]:IRgb} = {
 
     'dim-gold': {r: 10, g: 7, b: 0},
     'gold': {r: 149, g: 94, b: 0},
+    'bright-gold': {r: 255, g: 221, b: 0},
+
+    'dim-orange': {r: 52, g: 32, b: 1},
+    'orange': {r: 144, g: 86, b: 3},
+    'bright-orange': {r: 255, g: 153, b: 8},
+
+    'dim-teal': {r: 0, g: 43, b: 17},
+    'teal': {r: 0, g: 142, b: 56},
+    'bright-teal': {r: 0, g: 255, b: 110},
 
     'dim-white': {r: 55, g: 55, b: 55},
     'white': {r: 255, g: 255, b: 255},
