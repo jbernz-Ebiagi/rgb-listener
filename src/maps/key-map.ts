@@ -15,17 +15,21 @@ const loopXControls = {
     none: "select_loop {key_name} : deselect_loop {key_name}",
     lctrl: "clear_loop {key_name}",
     lshift: "stop_loop {key_name}",
-    lalt: "reset_loop_params {key_name}"
+    lalt: "select_loop_as {key_name} : deselect_loop {key_name}"
 }
 
 const fxXControls = {
     none: "select_fx {param_name} : deselect_fx {param_name}",
-    lalt: "reset_fx_params {param_name}"
+    lalt: "select_fx {param_name} : deselect_fx {param_name}"
+}
+
+const envXControls = {
+    none: "select_env_clip {param_name}",
+    lalt: "select_env_clip {param_name}"
 }
 
 const cbXControls = {
-    none: "select_cbord {param_name}",
-    lalt: "reset_cbord_params {param_name}",
+    none: "select_cbord {param_name}: release_select_cbord {param_name}",
 }
 
 export const keyMap:IKey[] = [
@@ -36,9 +40,9 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: {
-            none: "select_all_loops : deselect_all_loops",
-            lshift: "stop_all_loops",
-            lalt: "reset_all_loop_params"
+            none: "assign_all_as : deselect_all_as",
+            lshift: "stop_all_loops_except_selected",
+            lalt: "reset_all_loop_params",
         },
         hid_id: 53,
         row: 1,
@@ -649,13 +653,85 @@ export const keyMap:IKey[] = [
         column: 9,
     },
     {
+        key_name: 'insert',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: envXControls,
+        param_name: 'ENVCLIP1',
+        hid_id: 73,
+        row: 1,
+        column: 14,
+    },
+    {
+        key_name: 'home',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: envXControls,
+        param_name: 'ENVCLIP2',
+        hid_id: 74,
+        row: 1,
+        column: 15,
+    },
+    {
+        key_name: 'page_up',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: envXControls,
+        param_name: 'ENVCLIP3',
+        hid_id: 75,
+        row: 1,
+        column: 16,
+    },
+    {
+        key_name: 'delete',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: envXControls,
+        param_name: 'ENVCLIP4',
+        hid_id: 76,
+        row: 2,
+        column: 14,
+    },
+    {
+        key_name: 'end',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: envXControls,
+        param_name: 'ENVCLIP5',
+        hid_id: 77,
+        row: 2,
+        column: 15,
+    },
+    {
+        key_name: 'page_down',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: envXControls,
+        param_name: 'ENVCLIP6',
+        hid_id: 78,
+        row: 2,
+        column: 16,
+    },
+    {
         key_name: 'escape',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: {
-            lalt: 'reset_all_fx_params'
+            none: 'select_all_fx'
         },
         hid_id: 41,
         row: 0,

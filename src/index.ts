@@ -4,6 +4,7 @@ import WootingAnalog from './wooting-analog';
 import HidBlocker from "./hid-blocker";
 import MidiOut from './midi-out';
 import { getChannelFromModifiers } from './maps/modifier-map';
+const robot = require('robotjs');
 
 
 export default class Ebiagi {
@@ -32,6 +33,8 @@ export default class Ebiagi {
 
     enable() {
         this.ableton.startUpdater();
+        robot.keyTap('escape')
+        robot.keyTap('`', ['alt'])
         this.hid.block();
         this.rgb = new WootingRgb().initialize();
         this.active = true;
@@ -40,6 +43,7 @@ export default class Ebiagi {
     disable() {
         this.ableton.stopUpdater();
         this.hid.unblock();
+        robot.keyTap('escape')
         this.rgb.reset();
         this.modifiers = [];
         this.active = false;
