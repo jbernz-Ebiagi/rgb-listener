@@ -1,28 +1,27 @@
-import { Ableton } from "ableton-js";
 import Ebiagi from ".";
 import WootingRgb from "./wooting-rgb";
+import Socket from './socket';
 import { setAllLoopKeys, setKeyRgb, setKeyParamRgb} from "./rgb-functions";
 
 export default class AbletonWrapper {
 
     parent: Ebiagi
     rgb: WootingRgb
-    ableton: Ableton
+    socket: Socket
     updateInterval: NodeJS.Timeout
 
     initialize(parent: Ebiagi, rgb: WootingRgb) {
 
         this.parent = parent;
         this.rgb = rgb;
-        this.ableton = new Ableton();
+        this.socket = new Socket().initialize(this.updateData.bind(this));
         return this;
     }
 
     startUpdater() {
         this.rgb.clear();
         this.updateInterval = setInterval(async () => {
-            await this.updateData();
-            this.rgb.update()
+            this.socket.getState()
         }, 100);
     }
 
@@ -30,44 +29,52 @@ export default class AbletonWrapper {
         clearInterval(this.updateInterval);
     }
 
-    async updateData() {
-        const data = await this.ableton.song.get('data');
-        console.log(data.raw)
+    updateData(data) {
 
         const { 
-            loops, 
-            has_empty_loops, 
-            fx ,
-            cbord
-        } = data.raw;
+            instr, 
+            inputs, 
+        } = data;
 
-        if(has_empty_loops){
-            setAllLoopKeys(this.rgb, 'dim-red');
+        for(const i of instr){
+            const color = i.brightness > 0 ? i.color : 'dim-' + i.color
+            setKeyParamRgb(this.rgb, `INSTR${i.index+1}`, color);
         }
 
-        for(const loop of loops){
-            setKeyRgb(this.rgb, loop.key_name, loop.color);
+        for(const i in inputs){
+            setKeyParamRgb(this.rgb, i, inputs[i]);
         }
 
-        for(const fxO of fx){
-            setKeyParamRgb(this.rgb, fxO.name, fxO.color);
-        }
 
-        for(const c of cbord){
-            setKeyParamRgb(this.rgb, c.name, c.color);
-        }
+        // if(has_empty_loops){
+        //     setAllLoopKeys(this.rgb, 'dim-red');
+        // }
 
-        if(data.raw.loops.length > 0){
-            setKeyRgb(this.rgb, 'tilde', 'gold');
-        } else {
-            setKeyRgb(this.rgb, 'tilde', 'dim-gold');
-        }
+        // for(const loop of loops){
+        //     setKeyRgb(this.rgb, loop.key_name, loop.color);
+        // }
 
-        if(data.raw.fx.length > 0){
-            setKeyRgb(this.rgb, 'escape', 'dim-purple');
-        } else {
-            setKeyRgb(this.rgb, 'escape', 'dark');
-        }
+        // for(const fxO of fx){
+        //     setKeyParamRgb(this.rgb, fxO.name, fxO.color);
+        // }
+
+        // for(const c of cbord){
+        //     setKeyParamRgb(this.rgb, c.name, c.color);
+        // }
+
+        // if(data.raw.loops.length > 0){
+        //     setKeyRgb(this.rgb, 'tilde', 'gold');
+        // } else {
+        //     setKeyRgb(this.rgb, 'tilde', 'dim-gold');
+        // }
+
+        // if(data.raw.fx.length > 0){
+        //     setKeyRgb(this.rgb, 'escape', 'dim-purple');
+        // } else {
+        //     setKeyRgb(this.rgb, 'escape', 'dark');
+        // }
+
+        this.rgb.update()
     
     }
 

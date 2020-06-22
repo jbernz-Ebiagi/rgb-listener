@@ -97,6 +97,10 @@ export default class WootingAnalog {
     parseCommand(command:string, key:IKey){
         command = command.replace("{mod_channel}", getChannelFromModifiers(this.parent.modifiers));
         command = command.replace("{hid_id}", key.hid_id.toString());
+        if(key.midi_note){
+            command = command.replace("{midi_note}", key.midi_note.toString());
+        }
+
         return command;
     }
 

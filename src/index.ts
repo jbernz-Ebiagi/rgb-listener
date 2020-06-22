@@ -26,7 +26,6 @@ export default class Ebiagi {
         this.rgb = new WootingRgb().initialize();
         this.ableton = new AbletonWrapper().initialize(this, this.rgb);
         this.midi = new MidiOut().initialize();
-
         this.ableton.startUpdater();
         this.active = true;
     }

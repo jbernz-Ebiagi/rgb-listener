@@ -23,11 +23,11 @@ export const rgbMap:{[key: string]:IRgb} = {
     'bright-pink': {r: 255, g: 50, b: 168},
 
     'dim-lavender': {r:53, g: 35, b: 59},
-    'lavender': {r:150, g: 99, b: 168},
+    'lavender': {r:110, g: 70, b: 120},
     'bright-lavender': {r: 199, g: 125, b:220},
 
-    'dim-gold': {r: 10, g: 7, b: 0},
-    'gold': {r: 149, g: 94, b: 0},
+    'dim-gold': {r: 45, g: 45, b: 0},
+    'gold': {r: 120, g: 120, b: 0},
     'bright-gold': {r: 255, g: 221, b: 0},
 
     'dim-orange': {r: 52, g: 32, b: 1},

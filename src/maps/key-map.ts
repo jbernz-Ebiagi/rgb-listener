@@ -7,6 +7,7 @@ export interface IKey {
     x_control?: {};
     param_name?: string;
     hid_id: number;
+    midi_note?: number;
     row: number;
     column: number;
 }
@@ -28,8 +29,12 @@ const envXControls = {
     lalt: "select_env_clip {param_name}"
 }
 
-const cbXControls = {
-    none: "select_cbord {param_name}: release_select_cbord {param_name}",
+const inputXControls = {
+    none: "select_input {param_name}: deselect_input {param_name}"
+}
+
+const instrXControls = {
+    none: "select_instrument {param_name}: deselect_instrument {param_name}",
 }
 
 export const keyMap:IKey[] = [
@@ -610,8 +615,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: cbXControls,
-        param_name: 'CB1',
+        x_control: instrXControls,
+        param_name: 'INSTR1',
         hid_id: 62,
         row: 0,
         column: 6,
@@ -622,8 +627,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: cbXControls,
-        param_name: 'CB2',
+        x_control: instrXControls,
+        param_name: 'INSTR2',
         hid_id: 63,
         row: 0,
         column: 7,
@@ -634,8 +639,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: cbXControls,
-        param_name: 'CB3',
+        x_control: instrXControls,
+        param_name: 'INSTR3',
         hid_id: 64,
         row: 0,
         column: 8,
@@ -646,11 +651,59 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: cbXControls,
-        param_name: 'CB4',
+        x_control: instrXControls,
+        param_name: 'INSTR4',
         hid_id: 65,
         row: 0,
         column: 9,
+    },
+    {
+        key_name: 'f9',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: instrXControls,
+        param_name: 'INSTR5',
+        hid_id: 66,
+        row: 0,
+        column: 10,
+    },
+    {
+        key_name: 'f10',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: instrXControls,
+        param_name: 'INSTR6',
+        hid_id: 67,
+        row: 0,
+        column: 11,
+    },
+    {
+        key_name: 'f11',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: instrXControls,
+        param_name: 'INSTR7',
+        hid_id: 68,
+        row: 0,
+        column: 12,
+    },
+    {
+        key_name: 'f12',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: instrXControls,
+        param_name: 'INSTR8',
+        hid_id: 69,
+        row: 0,
+        column: 13,
     },
     {
         key_name: 'insert',
@@ -766,6 +819,45 @@ export const keyMap:IKey[] = [
         hid_id: 226,
         row: 5,
         column: 2,
+    },
+    {
+        key_name: 'right_alt',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{midi_note}',
+            off: 'send_midi_off:{mod_channel}|{midi_note}'
+        },
+        x_control: inputXControls,
+        param_name: 'AS',
+        hid_id: 230,
+        midi_note: 70,
+        row: 5,
+        column: 10,
+    },
+    {
+        key_name: 'right_command',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{midi_note}',
+            off: 'send_midi_off:{mod_channel}|{midi_note}'
+        },
+        x_control: inputXControls,
+        param_name: 'CBORD',
+        hid_id: 231,
+        midi_note: 71,
+        row: 5,
+        column: 11,
+    },
+    {
+        key_name: 'fn',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{midi_note}',
+            off: 'send_midi_off:{mod_channel}|{midi_note}'
+        },
+        x_control: inputXControls,
+        param_name: 'NANOK',
+        hid_id: 769,
+        midi_note: 72,
+        row: 5,
+        column: 12,
     },
     {
         key_name: 'right_control',
