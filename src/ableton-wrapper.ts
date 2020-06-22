@@ -31,10 +31,14 @@ export default class AbletonWrapper {
 
     updateData(data) {
 
+        // console.log(data)
+
         const { 
             instr, 
             inputs, 
         } = data;
+
+        this.rgb.clear()
 
         for(const i of instr){
             const color = i.brightness > 0 ? i.color : 'dim-' + i.color

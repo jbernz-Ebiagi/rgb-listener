@@ -24,7 +24,7 @@ export default class WootingRgb {
     initialize(){
 
         if(!wootingRgbLib.wooting_rgb_kbd_connected()){
-            console.log('failed to connecto to keyboard rgb');
+            console.log('failed to connect to keyboard rgb');
         } else {
             console.log('connected to keyboard rgb');
         }
@@ -43,8 +43,8 @@ export default class WootingRgb {
     
     clear(){
         for(const row of this.colorArray) {
-            for(let col of row){
-                col = ({r: 0, g: 0, b: 0});
+            for(let col in row){
+                row[col] = ({r: 0, g: 0, b: 0});
             }
         }
     }
