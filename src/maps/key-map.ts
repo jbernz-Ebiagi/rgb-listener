@@ -19,9 +19,9 @@ const loopXControls = {
     lalt: "select_loop_as {key_name} : deselect_loop {key_name}"
 }
 
-const fxXControls = {
-    none: "select_fx {param_name} : deselect_fx {param_name}",
-    lalt: "select_fx {param_name} : deselect_fx {param_name}"
+const mfxXControls = {
+    none: "select_mfx {param_name} : deselect_mfx {param_name}",
+    lalt: "select_mfx {param_name} : deselect_mfx {param_name}"
 }
 
 const envXControls = {
@@ -35,6 +35,7 @@ const inputXControls = {
 
 const instrXControls = {
     none: "select_instrument {param_name}: deselect_instrument {param_name}",
+    esc: "activate_module {param_name}"
 }
 
 export const keyMap:IKey[] = [
@@ -164,7 +165,7 @@ export const keyMap:IKey[] = [
         column: 10,
     },
     {
-        key_name: 'hyphen',
+        key_name: '-',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
@@ -175,7 +176,7 @@ export const keyMap:IKey[] = [
         column: 11,
     },
     {
-        key_name: 'equal_sign',
+        key_name: '=',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
@@ -296,7 +297,7 @@ export const keyMap:IKey[] = [
         column: 10,
     },
     {
-        key_name: 'open_bracket',
+        key_name: 'lb',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
@@ -307,7 +308,7 @@ export const keyMap:IKey[] = [
         column: 11,
     },
     {
-        key_name: 'close_bracket',
+        key_name: 'rb',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
@@ -417,7 +418,7 @@ export const keyMap:IKey[] = [
         column: 9,
     },
     {
-        key_name: 'semicolon',
+        key_name: ';',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
@@ -428,7 +429,7 @@ export const keyMap:IKey[] = [
         column: 10,
     },
     {
-        key_name: 'quote',
+        key_name: 'apos',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
@@ -516,7 +517,7 @@ export const keyMap:IKey[] = [
         column: 8,
     },
     {
-        key_name: 'comma',
+        key_name: ',',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
@@ -527,7 +528,7 @@ export const keyMap:IKey[] = [
         column: 9,
     },
     {
-        key_name: 'period',
+        key_name: '.',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
@@ -538,7 +539,7 @@ export const keyMap:IKey[] = [
         column: 10,
     },
     {
-        key_name: 'slash',
+        key_name: '/',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
@@ -567,8 +568,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: fxXControls,
-        param_name: 'GFX1',
+        x_control: mfxXControls,
+        param_name: 'MFX1',
         hid_id: 58,
         row: 0,
         column: 2,
@@ -579,8 +580,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: fxXControls,
-        param_name: 'GFX2',
+        x_control: mfxXControls,
+        param_name: 'MFX2',
         hid_id: 59,
         row: 0,
         column: 3,
@@ -591,8 +592,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: fxXControls,
-        param_name: 'GFX3',
+        x_control: mfxXControls,
+        param_name: 'MFX3',
         hid_id: 60,
         row: 0,
         column: 4,
@@ -603,8 +604,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: fxXControls,
-        param_name: 'GFX4',
+        x_control: mfxXControls,
+        param_name: 'MFX4',
         hid_id: 61,
         row: 0,
         column: 5,
@@ -780,11 +781,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'escape',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: {
-            none: 'select_all_fx'
+            on: 'activate_modifier:esc',
+            off: 'deactivate_modifier:esc'
         },
         hid_id: 41,
         row: 0,

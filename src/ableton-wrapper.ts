@@ -33,22 +33,52 @@ export default class AbletonWrapper {
 
         // console.log(data)
 
+        if(!data) return
+
         const { 
             instr, 
-            inputs, 
+            inputs,
+            modules,
+            loops,
+            mfx
         } = data;
 
         this.rgb.clear()
 
-        for(const i of instr){
-            const color = i.brightness > 0 ? i.color : 'dim-' + i.color
-            setKeyParamRgb(this.rgb, `INSTR${i.index+1}`, color);
+        if(!instr || !inputs || !modules || !loops || !mfx) return;
+
+        console.log(loops)
+
+        if(this.parent.modifiers.includes('esc')){
+
+            for(const i of modules){
+                const color = i.brightness > 0 ? i.color : 'dim-' + i.color
+                setKeyParamRgb(this.rgb, `INSTR${i.index+1}`, color);
+            }
+
+        } else {
+
+            for(const i of instr){
+                const color = i.brightness > 0 ? i.color : 'dim-' + i.color
+                setKeyParamRgb(this.rgb, `INSTR${i.index+1}`, color);
+            }
+
+            for(const i of mfx){
+                console.log(i)
+                const color = i.brightness > 0 ? i.color : 'dim-' + i.color
+                setKeyParamRgb(this.rgb, `MFX${i.index+1}`, color);
+            }
+
         }
 
         for(const i in inputs){
             setKeyParamRgb(this.rgb, i, inputs[i]);
         }
 
+        for(const i of loops){
+            const color = i.brightness == 0 && i.color != 'dark' ? 'dim-' + i.color : i.color
+            setKeyRgb(this.rgb, i.key_name, color);
+        }
 
         // if(has_empty_loops){
         //     setAllLoopKeys(this.rgb, 'dim-red');
