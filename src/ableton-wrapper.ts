@@ -31,7 +31,7 @@ export default class AbletonWrapper {
 
     updateData(data) {
 
-        // console.log(data)
+        console.log(data)
 
         if(!data) return
 
@@ -46,8 +46,6 @@ export default class AbletonWrapper {
         this.rgb.clear()
 
         if(!instr || !inputs || !modules || !loops || !mfx) return;
-
-        console.log(loops)
 
         if(this.parent.modifiers.includes('esc')){
 
@@ -64,7 +62,6 @@ export default class AbletonWrapper {
             }
 
             for(const i of mfx){
-                console.log(i)
                 const color = i.brightness > 0 ? i.color : 'dim-' + i.color
                 setKeyParamRgb(this.rgb, `MFX${i.index+1}`, color);
             }

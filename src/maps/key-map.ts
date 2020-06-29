@@ -15,8 +15,7 @@ export interface IKey {
 const loopXControls = {
     none: "select_loop {key_name} : deselect_loop {key_name}",
     lctrl: "clear_loop {key_name}",
-    lshift: "stop_loop {key_name}",
-    lalt: "select_loop_as {key_name} : deselect_loop {key_name}"
+    lshift: "stop_loop {key_name}"
 }
 
 const mfxXControls = {
@@ -24,10 +23,10 @@ const mfxXControls = {
     lalt: "select_mfx {param_name} : deselect_mfx {param_name}"
 }
 
-const envXControls = {
-    none: "select_env_clip {param_name}",
-    lalt: "select_env_clip {param_name}"
-}
+// const envXControls = {
+//     none: "select_env_clip {param_name}",
+//     lalt: "select_env_clip {param_name}"
+// }
 
 const inputXControls = {
     none: "select_input {param_name}: deselect_input {param_name}"
@@ -35,7 +34,8 @@ const inputXControls = {
 
 const instrXControls = {
     none: "select_instrument {param_name}: deselect_instrument {param_name}",
-    esc: "activate_module {param_name}"
+    esc: "activate_module {param_name}",
+    'esc,lctrl': "clear_module {param_name}"
 }
 
 export const keyMap:IKey[] = [
@@ -46,9 +46,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: {
-            none: "assign_all_as : deselect_all_as",
-            lshift: "stop_all_loops_except_selected",
-            lalt: "reset_all_loop_params",
+            lshift: "stop_all_loops",
         },
         hid_id: 53,
         row: 1,
@@ -706,78 +704,78 @@ export const keyMap:IKey[] = [
         row: 0,
         column: 13,
     },
-    {
-        key_name: 'insert',
-        commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: envXControls,
-        param_name: 'ENVCLIP1',
-        hid_id: 73,
-        row: 1,
-        column: 14,
-    },
-    {
-        key_name: 'home',
-        commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: envXControls,
-        param_name: 'ENVCLIP2',
-        hid_id: 74,
-        row: 1,
-        column: 15,
-    },
-    {
-        key_name: 'page_up',
-        commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: envXControls,
-        param_name: 'ENVCLIP3',
-        hid_id: 75,
-        row: 1,
-        column: 16,
-    },
-    {
-        key_name: 'delete',
-        commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: envXControls,
-        param_name: 'ENVCLIP4',
-        hid_id: 76,
-        row: 2,
-        column: 14,
-    },
-    {
-        key_name: 'end',
-        commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: envXControls,
-        param_name: 'ENVCLIP5',
-        hid_id: 77,
-        row: 2,
-        column: 15,
-    },
-    {
-        key_name: 'page_down',
-        commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: envXControls,
-        param_name: 'ENVCLIP6',
-        hid_id: 78,
-        row: 2,
-        column: 16,
-    },
+    // {
+    //     key_name: 'insert',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: envXControls,
+    //     param_name: 'ENVCLIP1',
+    //     hid_id: 73,
+    //     row: 1,
+    //     column: 14,
+    // },
+    // {
+    //     key_name: 'home',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: envXControls,
+    //     param_name: 'ENVCLIP2',
+    //     hid_id: 74,
+    //     row: 1,
+    //     column: 15,
+    // },
+    // {
+    //     key_name: 'page_up',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: envXControls,
+    //     param_name: 'ENVCLIP3',
+    //     hid_id: 75,
+    //     row: 1,
+    //     column: 16,
+    // },
+    // {
+    //     key_name: 'delete',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: envXControls,
+    //     param_name: 'ENVCLIP4',
+    //     hid_id: 76,
+    //     row: 2,
+    //     column: 14,
+    // },
+    // {
+    //     key_name: 'end',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: envXControls,
+    //     param_name: 'ENVCLIP5',
+    //     hid_id: 77,
+    //     row: 2,
+    //     column: 15,
+    // },
+    // {
+    //     key_name: 'page_down',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: envXControls,
+    //     param_name: 'ENVCLIP6',
+    //     hid_id: 78,
+    //     row: 2,
+    //     column: 16,
+    // },
     {
         key_name: 'escape',
         commands: {
@@ -817,6 +815,21 @@ export const keyMap:IKey[] = [
         hid_id: 226,
         row: 5,
         column: 2,
+    },
+    {
+        key_name: 'right_shift',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{midi_note}',
+            off: 'send_midi_off:{mod_channel}|{midi_note}'
+        },
+        x_control: {
+            none: 'toggle_input {param_name}'
+        },
+        param_name: 'LINE',
+        hid_id: 229,
+        midi_note: 79,
+        row: 4,
+        column: 13,
     },
     {
         key_name: 'right_alt',
