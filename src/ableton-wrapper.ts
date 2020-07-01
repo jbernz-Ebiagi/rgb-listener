@@ -40,12 +40,14 @@ export default class AbletonWrapper {
             inputs,
             modules,
             loops,
-            mfx
+            mfx,
+            gfx,
+            globalLoops
         } = data;
 
         this.rgb.clear()
 
-        if(!instr || !inputs || !modules || !loops || !mfx) return;
+        if(!instr || !inputs || !modules || !loops || !mfx || !globalLoops || !gfx) return;
 
         if(this.parent.modifiers.includes('esc')){
 
@@ -77,33 +79,15 @@ export default class AbletonWrapper {
             setKeyRgb(this.rgb, i.key_name, color);
         }
 
-        // if(has_empty_loops){
-        //     setAllLoopKeys(this.rgb, 'dim-red');
-        // }
+        for(const i of globalLoops){
+            const color = i.brightness == 0 && i.color != 'dark' ? 'dim-' + i.color : i.color
+            setKeyParamRgb(this.rgb, `RECORD${i.index+1}`, color);
+        }
 
-        // for(const loop of loops){
-        //     setKeyRgb(this.rgb, loop.key_name, loop.color);
-        // }
-
-        // for(const fxO of fx){
-        //     setKeyParamRgb(this.rgb, fxO.name, fxO.color);
-        // }
-
-        // for(const c of cbord){
-        //     setKeyParamRgb(this.rgb, c.name, c.color);
-        // }
-
-        // if(data.raw.loops.length > 0){
-        //     setKeyRgb(this.rgb, 'tilde', 'gold');
-        // } else {
-        //     setKeyRgb(this.rgb, 'tilde', 'dim-gold');
-        // }
-
-        // if(data.raw.fx.length > 0){
-        //     setKeyRgb(this.rgb, 'escape', 'dim-purple');
-        // } else {
-        //     setKeyRgb(this.rgb, 'escape', 'dark');
-        // }
+        for(const i of gfx){
+            const color = i.brightness > 0 ? i.color : 'dim-' + i.color
+            setKeyParamRgb(this.rgb, `GFX${i.index+1}`, color);
+        }
 
         this.rgb.update()
     
