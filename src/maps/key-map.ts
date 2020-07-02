@@ -53,6 +53,7 @@ export const keyMap:IKey[] = [
         },
         x_control: {
             lshift: "stop_all_loops",
+            esc: "rebuild_set"
         },
         hid_id: 53,
         row: 1,

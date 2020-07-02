@@ -1,5 +1,6 @@
 [X-CONTROLS]
 lshift_tilde = NOTE, 4, 53, 0, 0, stop_all_loops
+esc_tilde = NOTE, 6, 53, 0, 0, rebuild_set
 lctrl_1 = NOTE, 3, 30, 0, 0, clear_loop 1
 lshift_1 = NOTE, 4, 30, 0, 0, stop_loop 1
 1 = NOTE, 2, 30, 0, 0, select_loop 1 : deselect_loop 1
