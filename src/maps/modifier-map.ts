@@ -4,7 +4,8 @@ export const modifierMap = {
     'lshift': 3,
     'lalt': 4,
     'esc': 5,
-    'esc,lctrl': 6
+    'esc,lctrl': 6,
+    'lcommand': 7
 }
 
 export const getChannelFromModifiers = (modifiers:string[]) => {

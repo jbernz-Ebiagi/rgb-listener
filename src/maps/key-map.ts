@@ -15,7 +15,8 @@ export interface IKey {
 const loopXControls = {
     none: "select_loop {key_name} : deselect_loop {key_name}",
     lctrl: "clear_loop {key_name}",
-    lshift: "stop_loop {key_name}"
+    lshift: "stop_loop {key_name}",
+    lcommand: "quantize_loop {key_name}"
 }
 
 const mfxXControls = {
@@ -812,6 +813,16 @@ export const keyMap:IKey[] = [
         hid_id: 224,
         row: 5,
         column: 0,
+    },
+    {
+        key_name: 'left_command',
+        commands: {
+            on: 'activate_modifier:lcommand',
+            off: 'deactivate_modifier:lcommand'
+        },
+        hid_id: 227,
+        row: 5,
+        column: 1,
     },
     {
         key_name: 'left_alt',

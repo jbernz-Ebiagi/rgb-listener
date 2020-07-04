@@ -31,7 +31,7 @@ export default class AbletonWrapper {
 
     updateData(data) {
 
-        console.log(data)
+        // console.log(data)
 
         if(!data) return
 
