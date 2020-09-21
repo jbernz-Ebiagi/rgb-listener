@@ -11,12 +11,17 @@ export default class MidiOut {
     }
 
     sendNoteOn = (channel: number, note: number) => {
-        this.port.noteOn(channel, note, 127);
+        if (channel) {
+            this.port.noteOn(channel, note, 127);
+        }
+
     }
 
 
     sendNoteOff = (channel: number, note: number) => {
-        this.port.noteOff(channel, note, 127);
+        if (channel) {
+            this.port.noteOff(channel, note, 127);
+        }
     }
 
 }

@@ -51,11 +51,14 @@ export default class Ebiagi {
     command(commandString) {
 
         const command = commandString.split(':')[0];
-        const params = commandString.split(':')[1].split('|');
+        const params = commandString.split(':')[1] ? commandString.split(':')[1].split('|') : null;
 
         if(this.active || command === 'toggle_keyboard'){
             console.log(commandString);
             switch (command){
+                case 'toggle_as':
+                    robot.keyTap('`', ['alt'])
+                    break;
                 case 'toggle_keyboard':
                     this.active ? this.disable() : this.enable();
                     break;

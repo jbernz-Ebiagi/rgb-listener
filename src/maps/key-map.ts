@@ -42,7 +42,14 @@ const inputXControls = {
 const instrXControls = {
     none: "select_instrument {param_name}: deselect_instrument {param_name}",
     esc: "activate_module {param_name}",
+    lshift: "stop_instrument {param_name}",
+    lalt: "reset_instrument_params {param_name}",
+    lcommand: "set_instrument_params {param_name}",
     'esc,lctrl': "clear_module {param_name}"
+}
+
+const metronomeXControls = {
+    none: "toggle_metronome"
 }
 
 export const keyMap:IKey[] = [
@@ -182,7 +189,7 @@ export const keyMap:IKey[] = [
         column: 11,
     },
     {
-        key_name: '=',
+        key_name: 'equal',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
@@ -424,7 +431,7 @@ export const keyMap:IKey[] = [
         column: 9,
     },
     {
-        key_name: ';',
+        key_name: 'semi',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
@@ -545,13 +552,13 @@ export const keyMap:IKey[] = [
         column: 10,
     },
     {
-        key_name: '/',
+        key_name: 'slash',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: loopXControls,
-        hid_id: 38,
+        hid_id: 56,
         row: 4,
         column: 11,
     },
@@ -567,6 +574,15 @@ export const keyMap:IKey[] = [
         hid_id: 44,
         row: 5,
         column: 5,
+    },
+    {
+        key_name: 'backslash',
+        commands: {
+            on: 'toggle_as'
+        },
+        hid_id: 49,
+        row: 2,
+        column: 13,
     },
     {
         key_name: 'f1',
@@ -713,6 +729,17 @@ export const keyMap:IKey[] = [
         column: 13,
     },
     {
+        key_name: 'pause',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: metronomeXControls,
+        hid_id: 72,
+        row: 0,
+        column: 14,
+    },
+    {
         key_name: 'insert',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
@@ -783,6 +810,34 @@ export const keyMap:IKey[] = [
         hid_id: 78,
         row: 2,
         column: 16,
+    },
+    {
+        key_name: 'down_arrow',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: {
+            none: "shift_preset_down"
+        },
+        param_name: 'GFX3',
+        hid_id: 81,
+        row: 5,
+        column: 15,
+    },
+    {
+        key_name: 'up_arrow',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: {
+            none: "shift_preset_up"
+        },
+        param_name: 'GFX3',
+        hid_id: 82,
+        row: 4,
+        column: 15,
     },
     {
         key_name: 'escape',
@@ -884,7 +939,7 @@ export const keyMap:IKey[] = [
         x_control: inputXControls,
         param_name: 'NANOK',
         hid_id: 769,
-        midi_note: 72,
+        midi_note: 127,
         row: 5,
         column: 12,
     },
