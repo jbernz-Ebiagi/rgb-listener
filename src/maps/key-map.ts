@@ -739,77 +739,89 @@ export const keyMap:IKey[] = [
         row: 0,
         column: 14,
     },
+    // {
+    //     key_name: 'insert',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: recordControls,
+    //     param_name: 'RECORD1',
+    //     hid_id: 73,
+    //     row: 1,
+    //     column: 14,
+    // },
+    // {
+    //     key_name: 'home',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: recordControls,
+    //     param_name: 'RECORD2',
+    //     hid_id: 74,
+    //     row: 1,
+    //     column: 15,
+    // },
+    // {
+    //     key_name: 'page_up',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: recordControls,
+    //     param_name: 'RECORD3',
+    //     hid_id: 75,
+    //     row: 1,
+    //     column: 16,
+    // },
+    // {
+    //     key_name: 'delete',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: gfxXControls,
+    //     param_name: 'GFX1',
+    //     hid_id: 76,
+    //     row: 2,
+    //     column: 14,
+    // },
+    // {
+    //     key_name: 'end',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: gfxXControls,
+    //     param_name: 'GFX2',
+    //     hid_id: 77,
+    //     row: 2,
+    //     column: 15,
+    // },
+    // {
+    //     key_name: 'page_down',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: gfxXControls,
+    //     param_name: 'GFX3',
+    //     hid_id: 78,
+    //     row: 2,
+    //     column: 16,
+    // },
     {
-        key_name: 'insert',
-        commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: recordControls,
-        param_name: 'RECORD1',
-        hid_id: 73,
-        row: 1,
-        column: 14,
-    },
-    {
-        key_name: 'home',
-        commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: recordControls,
-        param_name: 'RECORD2',
-        hid_id: 74,
-        row: 1,
-        column: 15,
-    },
-    {
-        key_name: 'page_up',
-        commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: recordControls,
-        param_name: 'RECORD3',
-        hid_id: 75,
-        row: 1,
-        column: 16,
-    },
-    {
-        key_name: 'delete',
+        key_name: 'left_arrow',
         commands: {
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: gfxXControls,
         param_name: 'GFX1',
-        hid_id: 76,
-        row: 2,
+        hid_id: 80,
+        row: 5,
         column: 14,
-    },
-    {
-        key_name: 'end',
-        commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: gfxXControls,
-        param_name: 'GFX2',
-        hid_id: 77,
-        row: 2,
-        column: 15,
-    },
-    {
-        key_name: 'page_down',
-        commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
-        },
-        x_control: gfxXControls,
-        param_name: 'GFX3',
-        hid_id: 78,
-        row: 2,
-        column: 16,
     },
     {
         key_name: 'down_arrow',
@@ -817,10 +829,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: {
-            none: "shift_preset_down"
-        },
-        param_name: 'GFX3',
+        x_control: gfxXControls,
+        param_name: 'GFX2',
         hid_id: 81,
         row: 5,
         column: 15,
@@ -831,14 +841,24 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: {
-            none: "shift_preset_up"
-        },
-        param_name: 'GFX3',
+        x_control: recordControls,
+        param_name: 'RECORD1',
         hid_id: 82,
         row: 4,
         column: 15,
     },
+    // {
+    //     key_name: 'right_arrow',
+    //     commands: {
+    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
+    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
+    //     },
+    //     x_control: gfxXControls,
+    //     param_name: 'GFX3',
+    //     hid_id: 79,
+    //     row: 5,
+    //     column: 16,
+    // },
     {
         key_name: 'escape',
         commands: {
