@@ -19,6 +19,10 @@ const loopXControls = {
     lcommand: "quantize_loop {key_name}"
 }
 
+const clipXControls = {
+    none: "play_clip {param_name} : stop_clip {param_name}",
+}
+
 const mfxXControls = {
     none: "select_mfx {param_name} : deselect_mfx {param_name}",
     lalt: "select_mfx {param_name} : deselect_mfx {param_name}"
@@ -48,6 +52,11 @@ const instrXControls = {
     'esc,lctrl': "clear_module {param_name}"
 }
 
+const snapXControls = {
+    none: "select_snap {param_name} : deselect_snap {param_name}",
+    lcommand: "assign_snap {param_name}"
+}
+
 const metronomeXControls = {
     none: "toggle_metronome"
 }
@@ -73,7 +82,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP1',
         hid_id: 30,
         row: 1,
         column: 1,
@@ -84,7 +94,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP2',
         hid_id: 31,
         row: 1,
         column: 2,
@@ -95,7 +106,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP3',
         hid_id: 32,
         row: 1,
         column: 3,
@@ -106,7 +118,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP4',
         hid_id: 33,
         row: 1,
         column: 4,
@@ -205,7 +218,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP5',
         hid_id: 20,
         row: 2,
         column: 1,
@@ -216,7 +230,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP6',
         hid_id: 26,
         row: 2,
         column: 2,
@@ -227,7 +242,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP7',
         hid_id: 8,
         row: 2,
         column: 3,
@@ -238,7 +254,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP8',
         hid_id: 21,
         row: 2,
         column: 4,
@@ -337,7 +354,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP9',
         hid_id: 4,
         row: 3,
         column: 1,
@@ -348,7 +366,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP10',
         hid_id: 22,
         row: 3,
         column: 2,
@@ -359,7 +378,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP11',
         hid_id: 7,
         row: 3,
         column: 3,
@@ -370,7 +390,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP12',
         hid_id: 9,
         row: 3,
         column: 4,
@@ -458,7 +479,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP13',
         hid_id: 29,
         row: 4,
         column: 2,
@@ -469,7 +491,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP14',
         hid_id: 27,
         row: 4,
         column: 3,
@@ -480,7 +503,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: loopXControls,
+        x_control: clipXControls,
+        param_name: 'CLIP15',
         hid_id: 6,
         row: 4,
         column: 4,
@@ -574,6 +598,19 @@ export const keyMap:IKey[] = [
         hid_id: 44,
         row: 5,
         column: 5,
+    },
+    {
+        key_name: 'backspace',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: {
+            none: 'recall_snap'
+        },
+        hid_id: 42,
+        row: 3,
+        column: 13,
     },
     {
         key_name: 'backslash',
@@ -739,78 +776,78 @@ export const keyMap:IKey[] = [
         row: 0,
         column: 14,
     },
-    // {
-    //     key_name: 'insert',
-    //     commands: {
-    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
-    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
-    //     },
-    //     x_control: recordControls,
-    //     param_name: 'RECORD1',
-    //     hid_id: 73,
-    //     row: 1,
-    //     column: 14,
-    // },
-    // {
-    //     key_name: 'home',
-    //     commands: {
-    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
-    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
-    //     },
-    //     x_control: recordControls,
-    //     param_name: 'RECORD2',
-    //     hid_id: 74,
-    //     row: 1,
-    //     column: 15,
-    // },
-    // {
-    //     key_name: 'page_up',
-    //     commands: {
-    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
-    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
-    //     },
-    //     x_control: recordControls,
-    //     param_name: 'RECORD3',
-    //     hid_id: 75,
-    //     row: 1,
-    //     column: 16,
-    // },
-    // {
-    //     key_name: 'delete',
-    //     commands: {
-    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
-    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
-    //     },
-    //     x_control: gfxXControls,
-    //     param_name: 'GFX1',
-    //     hid_id: 76,
-    //     row: 2,
-    //     column: 14,
-    // },
-    // {
-    //     key_name: 'end',
-    //     commands: {
-    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
-    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
-    //     },
-    //     x_control: gfxXControls,
-    //     param_name: 'GFX2',
-    //     hid_id: 77,
-    //     row: 2,
-    //     column: 15,
-    // },
-    // {
-    //     key_name: 'page_down',
-    //     commands: {
-    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
-    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
-    //     },
-    //     x_control: gfxXControls,
-    //     param_name: 'GFX3',
-    //     hid_id: 78,
-    //     row: 2,
-    //     column: 16,
-    // },
+    {
+        key_name: 'insert',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: snapXControls,
+        param_name: 'SNAP1',
+        hid_id: 73,
+        row: 1,
+        column: 14,
+    },
+    {
+        key_name: 'home',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: snapXControls,
+        param_name: 'SNAP2',
+        hid_id: 74,
+        row: 1,
+        column: 15,
+    },
+    {
+        key_name: 'page_up',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: snapXControls,
+        param_name: 'SNAP3',
+        hid_id: 75,
+        row: 1,
+        column: 16,
+    },
+    {
+        key_name: 'delete',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: snapXControls,
+        param_name: 'SNAP4',
+        hid_id: 76,
+        row: 2,
+        column: 14,
+    },
+    {
+        key_name: 'end',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: snapXControls,
+        param_name: 'SNAP5',
+        hid_id: 77,
+        row: 2,
+        column: 15,
+    },
+    {
+        key_name: 'page_down',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: snapXControls,
+        param_name: 'SNAP6',
+        hid_id: 78,
+        row: 2,
+        column: 16,
+    },
     {
         key_name: 'left_arrow',
         commands: {

@@ -42,12 +42,13 @@ export default class AbletonWrapper {
             loops,
             mfx,
             gfx,
-            globalLoops
+            globalLoops,
+            clips
         } = data;
 
         this.rgb.clear()
 
-        if(!instr || !inputs || !modules || !loops || !mfx || !globalLoops || !gfx) return;
+        if(!instr || !inputs || !modules || !loops || !mfx || !globalLoops || !gfx || !clips) return;
 
         if(this.parent.modifiers.includes('esc')){
 
@@ -77,6 +78,11 @@ export default class AbletonWrapper {
         for(const i of loops){
             const color = i.brightness == 0 && i.color != 'dark' ? 'dim-' + i.color : i.color
             setKeyRgb(this.rgb, i.key_name, color);
+        }
+
+        for(const i of clips){
+            const color = i.brightness == 0 && i.color != 'dark' ? 'dim-' + i.color : i.color
+            setKeyParamRgb(this.rgb, i.clip_name, color);
         }
 
         for(const i of globalLoops){
