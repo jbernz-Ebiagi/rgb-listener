@@ -13,10 +13,14 @@ for(const key of keyMap){
     if(key.x_control){
         if(key.commands.on.includes("{mod_channel}")){
             for(const mod in modifierMap){
+                let control;
                 if(key.x_control[mod]){
-                    const control = parseControl(key.x_control[mod], key);
-                    rules.push(`${mod}_${key.key_name} = NOTE, ${modifierMap[mod]+1}, ${key.midi_note ? key.midi_note : key.hid_id}, 0, 0, ${control}`)
+                    control = parseControl(key.x_control[mod], key);
                 }
+                else{
+                    control = parseControl(key.x_control['none'], key);
+                }
+                rules.push(`${mod}_${key.key_name} = NOTE, ${modifierMap[mod]+1}, ${key.midi_note ? key.midi_note : key.hid_id}, 0, 0, ${control}`)
             }
         }
         if(key.x_control['none']){

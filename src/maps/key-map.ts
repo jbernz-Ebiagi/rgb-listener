@@ -4,7 +4,10 @@ export interface IKey {
         on?: string
         off?: string
     };
-    x_control?: {};
+    x_control?: {
+        none: string,
+        [x:string]: any
+    };
     param_name?: string;
     hid_id: number;
     midi_note?: number;
@@ -16,7 +19,7 @@ const loopXControls = {
     none: "select_loop {key_name} : deselect_loop {key_name}",
     lctrl: "clear_loop {key_name}",
     lshift: "stop_loop {key_name}",
-    lcommand: "quantize_loop {key_name}"
+    lcommand: "quantize_loop {key_name}",
 }
 
 const clipXControls = {
@@ -25,7 +28,8 @@ const clipXControls = {
 
 const mfxXControls = {
     none: "select_mfx {param_name} : deselect_mfx {param_name}",
-    lalt: "select_mfx {param_name} : deselect_mfx {param_name}"
+    lalt: "select_mfx {param_name} : deselect_mfx {param_name}",
+    snap: "recall_snap {param_name}",
 }
 
 const gfxXControls = {
@@ -54,7 +58,8 @@ const instrXControls = {
 
 const snapXControls = {
     none: "select_snap {param_name} : deselect_snap {param_name}",
-    lcommand: "assign_snap {param_name}"
+    lcommand: "assign_snap {param_name}",
+    lctrl: "clear_snap {param_name}"
 }
 
 const metronomeXControls = {
@@ -69,6 +74,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: {
+            none: '',
             lshift: "stop_all_loops",
             esc: "rebuild_set"
         },
@@ -606,7 +612,8 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: {
-            none: 'recall_snap'
+            none: 'recall_snap',
+            snap: 'recall_snap'
         },
         hid_id: 42,
         row: 3,
@@ -779,8 +786,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'insert',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
+            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
+            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
         },
         x_control: snapXControls,
         param_name: 'SNAP1',
@@ -791,8 +798,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'home',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
+            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
+            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
         },
         x_control: snapXControls,
         param_name: 'SNAP2',
@@ -803,8 +810,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'page_up',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
+            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
+            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
         },
         x_control: snapXControls,
         param_name: 'SNAP3',
@@ -815,8 +822,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'delete',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
+            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
+            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
         },
         x_control: snapXControls,
         param_name: 'SNAP4',
@@ -827,8 +834,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'end',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
+            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
+            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
         },
         x_control: snapXControls,
         param_name: 'SNAP5',
@@ -839,8 +846,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'page_down',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}',
-            off: 'send_midi_off:{mod_channel}|{hid_id}'
+            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
+            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
         },
         x_control: snapXControls,
         param_name: 'SNAP6',
