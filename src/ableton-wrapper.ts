@@ -44,7 +44,8 @@ export default class AbletonWrapper {
             gfx,
             globalLoops,
             clips,
-            snaps
+            snaps,
+            metronome
         } = data;
 
         this.rgb.clear()
@@ -113,6 +114,8 @@ export default class AbletonWrapper {
             const color = i.brightness > 0 ? i.color : 'dim-' + i.color
             setKeyParamRgb(this.rgb, `SNAP${i.index+1}`, color);
         }
+
+        setKeyParamRgb(this.rgb, `METRO`, metronome ? 'blue' : 'dim-white');
 
         this.rgb.update()
     

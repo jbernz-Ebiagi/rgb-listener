@@ -779,7 +779,8 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: metronomeXControls,
-        hid_id: 72,
+        param_name: 'METRO',
+        hid_id: 70,
         row: 0,
         column: 14,
     },
