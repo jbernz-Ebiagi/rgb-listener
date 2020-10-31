@@ -88,8 +88,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP1',
+        x_control: loopXControls,
         hid_id: 30,
         row: 1,
         column: 1,
@@ -100,8 +99,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP2',
+        x_control: loopXControls,
         hid_id: 31,
         row: 1,
         column: 2,
@@ -112,8 +110,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP3',
+        x_control: loopXControls,
         hid_id: 32,
         row: 1,
         column: 3,
@@ -124,8 +121,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP4',
+        x_control: loopXControls,
         hid_id: 33,
         row: 1,
         column: 4,
@@ -224,8 +220,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP5',
+        x_control: loopXControls,
         hid_id: 20,
         row: 2,
         column: 1,
@@ -236,8 +231,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP6',
+        x_control: loopXControls,
         hid_id: 26,
         row: 2,
         column: 2,
@@ -248,8 +242,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP7',
+        x_control: loopXControls,
         hid_id: 8,
         row: 2,
         column: 3,
@@ -260,8 +253,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP8',
+        x_control: loopXControls,
         hid_id: 21,
         row: 2,
         column: 4,
@@ -360,8 +352,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP9',
+        x_control: loopXControls,
         hid_id: 4,
         row: 3,
         column: 1,
@@ -372,8 +363,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP10',
+        x_control: loopXControls,
         hid_id: 22,
         row: 3,
         column: 2,
@@ -384,8 +374,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP11',
+        x_control: loopXControls,
         hid_id: 7,
         row: 3,
         column: 3,
@@ -396,8 +385,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP12',
+        x_control: loopXControls,
         hid_id: 9,
         row: 3,
         column: 4,
@@ -485,8 +473,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP13',
+        x_control: loopXControls,
         hid_id: 29,
         row: 4,
         column: 2,
@@ -497,8 +484,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP14',
+        x_control: loopXControls,
         hid_id: 27,
         row: 4,
         column: 3,
@@ -509,8 +495,7 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: clipXControls,
-        param_name: 'CLIP15',
+        x_control: loopXControls,
         hid_id: 6,
         row: 4,
         column: 4,
