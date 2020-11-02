@@ -948,7 +948,7 @@ export const keyMap:IKey[] = [
         x_control: {
             none: 'toggle_input {param_name}'
         },
-        param_name: 'LINE',
+        param_name: 'MIC',
         hid_id: 229,
         midi_note: 79,
         row: 4,
@@ -974,7 +974,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{midi_note}'
         },
         x_control: inputXControls,
-        param_name: 'CBORD',
+        param_name: 'NEKTAR',
         hid_id: 231,
         midi_note: 71,
         row: 5,
