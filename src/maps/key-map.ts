@@ -19,28 +19,18 @@ const loopXControls = {
     none: "select_loop {key_name} : deselect_loop {key_name}",
     lctrl: "clear_loop {key_name}",
     lshift: "stop_loop {key_name}",
-    lcommand: "quantize_loop {key_name}",
+    //lcommand: "quantize_loop {key_name}",
 }
 
-const clipXControls = {
-    none: "play_clip {param_name} : stop_clip {param_name}",
-}
 
-const mfxXControls = {
-    none: "select_mfx {param_name} : deselect_mfx {param_name}",
-    lalt: "select_mfx {param_name} : deselect_mfx {param_name}",
+const utilityXControls = {
+    none: "recall_snap {param_name}",
     snap: "recall_snap {param_name}",
 }
 
-const gfxXControls = {
-    none: "select_gfx {param_name} : deselect_gfx {param_name}",
-    lalt: "select_gfx {param_name} : deselect_gfx {param_name}"
-}
-
-const recordControls = {
-    none: "select_global_loop {param_name}",
-    lshift: "stop_global_loop {param_name}",
-    lctrl: "clear_global_loop {param_name}"
+const ginstrXControls = {
+    none: "select_global_instrument {param_name} : deselect_global_instrument {param_name}",
+    lalt: "select_global_instrument {param_name} : deselect_global_instrument {param_name}"
 }
 
 const inputXControls = {
@@ -50,9 +40,7 @@ const inputXControls = {
 const instrXControls = {
     none: "select_instrument {param_name}: deselect_instrument {param_name}",
     esc: "activate_module {param_name}",
-    lshift: "stop_instrument {param_name}",
-    lalt: "reset_instrument_params {param_name}",
-    lcommand: "set_instrument_params {param_name}",
+    lshift: "stop_instrument {param_name}: deselect_instrument {param_name}",
     'esc,lctrl': "clear_module {param_name}"
 }
 
@@ -597,11 +585,12 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: {
-            none: 'recall_snap',
-            snap: 'recall_snap'
+            none: 'recall_snap 0',
+            snap: 'recall_snap 0'
         },
+        param_name: 'UTILITY4',
         hid_id: 42,
-        row: 3,
+        row: 1,
         column: 13,
     },
     {
@@ -619,8 +608,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: mfxXControls,
-        param_name: 'MFX1',
+        x_control: instrXControls,
+        param_name: 'INSTR1',
         hid_id: 58,
         row: 0,
         column: 2,
@@ -631,8 +620,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: mfxXControls,
-        param_name: 'MFX2',
+        x_control: instrXControls,
+        param_name: 'INSTR2',
         hid_id: 59,
         row: 0,
         column: 3,
@@ -643,8 +632,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: mfxXControls,
-        param_name: 'MFX3',
+        x_control: instrXControls,
+        param_name: 'INSTR3',
         hid_id: 60,
         row: 0,
         column: 4,
@@ -655,8 +644,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: mfxXControls,
-        param_name: 'MFX4',
+        x_control: instrXControls,
+        param_name: 'INSTR4',
         hid_id: 61,
         row: 0,
         column: 5,
@@ -668,7 +657,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: instrXControls,
-        param_name: 'INSTR1',
+        param_name: 'INSTR5',
         hid_id: 62,
         row: 0,
         column: 6,
@@ -680,7 +669,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: instrXControls,
-        param_name: 'INSTR2',
+        param_name: 'INSTR6',
         hid_id: 63,
         row: 0,
         column: 7,
@@ -692,7 +681,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: instrXControls,
-        param_name: 'INSTR3',
+        param_name: 'INSTR7',
         hid_id: 64,
         row: 0,
         column: 8,
@@ -704,7 +693,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: instrXControls,
-        param_name: 'INSTR4',
+        param_name: 'INSTR8',
         hid_id: 65,
         row: 0,
         column: 9,
@@ -715,8 +704,11 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: instrXControls,
-        param_name: 'INSTR5',
+        x_control: {
+            none: 'recall_snap 1',
+            snap: 'recall_snap 1'
+        },
+        param_name: 'UTILITY0',
         hid_id: 66,
         row: 0,
         column: 10,
@@ -727,8 +719,11 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: instrXControls,
-        param_name: 'INSTR6',
+        x_control: {
+            none: 'recall_snap 2',
+            snap: 'recall_snap 2'
+        },
+        param_name: 'UTILITY1',
         hid_id: 67,
         row: 0,
         column: 11,
@@ -739,8 +734,11 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: instrXControls,
-        param_name: 'INSTR7',
+        x_control: {
+            none: 'recall_snap 4',
+            snap: 'recall_snap 4'
+        },
+        param_name: 'UTILITY2',
         hid_id: 68,
         row: 0,
         column: 12,
@@ -751,8 +749,11 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: instrXControls,
-        param_name: 'INSTR8',
+        x_control: {
+            none: 'recall_snap 8',
+            snap: 'recall_snap 8'
+        },
+        param_name: 'UTILITY3',
         hid_id: 69,
         row: 0,
         column: 13,
@@ -772,8 +773,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'insert',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
-            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: snapXControls,
         param_name: 'SNAP1',
@@ -784,8 +785,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'home',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
-            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: snapXControls,
         param_name: 'SNAP2',
@@ -796,8 +797,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'page_up',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
-            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: snapXControls,
         param_name: 'SNAP3',
@@ -808,8 +809,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'delete',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
-            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: snapXControls,
         param_name: 'SNAP4',
@@ -820,8 +821,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'end',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
-            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: snapXControls,
         param_name: 'SNAP5',
@@ -832,8 +833,8 @@ export const keyMap:IKey[] = [
     {
         key_name: 'page_down',
         commands: {
-            on: 'send_midi_on:{mod_channel}|{hid_id}::activate_modifier:snap',
-            off: 'send_midi_off:{mod_channel}|{hid_id}::deactivate_modifier:snap'
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: snapXControls,
         param_name: 'SNAP6',
@@ -847,8 +848,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: gfxXControls,
-        param_name: 'GFX1',
+        x_control: ginstrXControls,
+        param_name: 'GINSTR1',
         hid_id: 80,
         row: 5,
         column: 14,
@@ -859,8 +860,8 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: gfxXControls,
-        param_name: 'GFX2',
+        x_control: ginstrXControls,
+        param_name: 'GINSTR2',
         hid_id: 81,
         row: 5,
         column: 15,
@@ -871,8 +872,12 @@ export const keyMap:IKey[] = [
             on: 'send_midi_on:{mod_channel}|{hid_id}',
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
-        x_control: recordControls,
-        param_name: 'RECORD1',
+        x_control: {
+            none: "select_global_loop {param_name}",
+            lshift: "stop_global_loop {param_name}",
+            lctrl: "clear_global_loop {param_name}"
+        },
+        param_name: 'GLOBAL_LOOP',
         hid_id: 82,
         row: 4,
         column: 15,
