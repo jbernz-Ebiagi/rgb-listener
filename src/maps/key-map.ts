@@ -19,6 +19,7 @@ const loopXControls = {
     none: "select_loop {key_name} : deselect_loop {key_name}",
     lctrl: "clear_loop {key_name}",
     lshift: "stop_loop {key_name}",
+    lalt: "quantize_loop {key_name}",
     //lcommand: "quantize_loop {key_name}",
 }
 
@@ -882,18 +883,18 @@ export const keyMap:IKey[] = [
         row: 4,
         column: 15,
     },
-    // {
-    //     key_name: 'right_arrow',
-    //     commands: {
-    //         on: 'send_midi_on:{mod_channel}|{hid_id}',
-    //         off: 'send_midi_off:{mod_channel}|{hid_id}'
-    //     },
-    //     x_control: gfxXControls,
-    //     param_name: 'GFX3',
-    //     hid_id: 79,
-    //     row: 5,
-    //     column: 16,
-    // },
+    {
+        key_name: 'right_arrow',
+        commands: {
+            on: 'send_midi_on:{mod_channel}|{hid_id}',
+            off: 'send_midi_off:{mod_channel}|{hid_id}'
+        },
+        x_control: ginstrXControls,
+        param_name: 'GINSTR3',
+        hid_id: 79,
+        row: 5,
+        column: 16,
+    },
     {
         key_name: 'escape',
         commands: {
@@ -955,7 +956,7 @@ export const keyMap:IKey[] = [
         },
         param_name: 'MIC',
         hid_id: 229,
-        midi_note: 79,
+        midi_note: 83,
         row: 4,
         column: 13,
     },
@@ -992,7 +993,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{midi_note}'
         },
         x_control: inputXControls,
-        param_name: 'NANOK',
+        param_name: 'NANOP',
         hid_id: 769,
         midi_note: 127,
         row: 5,
