@@ -993,7 +993,7 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{midi_note}'
         },
         x_control: inputXControls,
-        param_name: 'NANOP',
+        param_name: 'EC4',
         hid_id: 769,
         midi_note: 127,
         row: 5,
