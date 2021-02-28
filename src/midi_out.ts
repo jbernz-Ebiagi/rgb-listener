@@ -7,8 +7,6 @@ export default () => {
 
     const sendNoteOn = (channel: number, note: number, velocity: number = 127) => {
         if (channel) {
-            console.log(channel)
-            console.log(note)
             port.noteOn(channel, note, velocity);
         }
     }
