@@ -6,7 +6,7 @@ export interface IKey {
 	};
 	xControls?: string[];
 	color: (state: State, self: IKey) => RGB
-	param_name?: string;
+	param_name?: string|number;
 	hid_id: number;
 	midi_note?: number;
 	row: number;
@@ -52,12 +52,12 @@ export interface HidEvent {
 }
 
 interface AbletonData {
-	clips: [],
+  clips: [],
   inputs: {},
   snaps: [],
   globalLoop: {},
   mfx: [],
-	instr: [],
+  instr: [],
   loops: {},
   modules: [],
   ginstr: [],

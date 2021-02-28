@@ -14,6 +14,7 @@
     "@types/node": "^12.0.2",
     "@types/node-hid": "^1.2.0",
     "ableton-js": "^1.10.2",
+    "easymidi": "^2.0.1",
     "ffi": "^2.3.0",
     "jzz": "^1.0.2",
     "node-hid": "^1.2.0",

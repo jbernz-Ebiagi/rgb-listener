@@ -20,7 +20,10 @@ export default () => {
     const start = (state: State) => {
         console.log(`beginning communcation with ableton...`)
         client.addListener("message", (msg: Buffer, info: dgram.RemoteInfo) => {
-            state.ableton = JSON.parse(msg.toString()).data
+            const data = JSON.parse(msg.toString()).data
+            if(data){
+                state.ableton = data
+            }
         })
         updateInterval = setInterval(async () => {
             _sendMessage({event:'get_state', data: {}})

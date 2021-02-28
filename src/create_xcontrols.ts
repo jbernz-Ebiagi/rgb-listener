@@ -9,7 +9,7 @@ for(const k of keyMap) {
         const note = counter % 127
         const channel = Math.floor(counter/127)+2
         rules.push(`${counter}_${k.key_name} = NOTE, ${channel}, ${note}, 0, 0, ${xControl}`)
-        dict[xControl] = [channel, note]
+        dict[xControl] = [channel-1, note]
         counter++
     }
 }

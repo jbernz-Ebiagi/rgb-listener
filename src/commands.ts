@@ -29,11 +29,11 @@ const _disable = (state: State, modules) => {
 }
 
 const sendNoteOn = (note: number, state: State, modules) => {
-  modules.midiOut.sendNoteOn(1, note)
+  modules.midiOut.sendNoteOn(0, note)
 }
 
 const sendNoteOff = (note: number, state: State, modules) => {
-  modules.midiOut.sendNoteOff(1, note)
+  modules.midiOut.sendNoteOff(0, note)
 }
 
 const sendXControl = (xControl: string, state: State, modules) => {
