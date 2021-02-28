@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index2.ts",
-    "create-xcontrols": "ts-node src/create-xcontrols.ts"
+    "create-xcontrols": "ts-node src/create_xcontrols.ts"
   },
   "author": "",
   "license": "ISC",

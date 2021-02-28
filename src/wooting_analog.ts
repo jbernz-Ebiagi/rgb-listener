@@ -30,62 +30,67 @@ const wootingAnalogLib = ffi.Library('./libs/libwooting_analog_wrapper.dylib', {
 const BUFFER_SIZE = 10
 const UPDATE_INTERVAL = 1
 
-let analogBufferInterval
 
-const connect = (mapper : (hidList: HidEvent[]) => void ) => {
+export default () => {
 
-    wootingAnalogLib.wooting_analog_initialise();
-    const deviceBuffer = new PVoidArray(BUFFER_SIZE)
-    const result = wootingAnalogLib.wooting_analog_get_connected_devices_info(deviceBuffer, BUFFER_SIZE)
-    let device_id, codeBuffer, analogBuffer
+  let analogBufferInterval
 
-    if(result > 0){
-        console.log('connected to keyboard analog')
-        device_id = ref.get(deviceBuffer.buffer, 0, DevicePointer).deref().device_id
-        codeBuffer = new Uint16Array(BUFFER_SIZE)
-        analogBuffer = new Float32Array(BUFFER_SIZE)
-    } else {
-        console.log('analog sdk cannot connect')
-    }
+  const connect = (mapper : (hidList: HidEvent[]) => void ) => {
 
-    analogBufferInterval = setInterval( () => {
-        [ codeBuffer, analogBuffer ] = updateBuffers(codeBuffer, analogBuffer, device_id, mapper)
-    }, UPDATE_INTERVAL)
-}
+      wootingAnalogLib.wooting_analog_initialise();
+      const deviceBuffer = new PVoidArray(BUFFER_SIZE)
+      const result = wootingAnalogLib.wooting_analog_get_connected_devices_info(deviceBuffer, BUFFER_SIZE)
+      let device_id, codeBuffer, analogBuffer
 
-const disconnect =  () => {
-  if(analogBufferInterval){
-    clearInterval(analogBufferInterval)
+      if(result > 0){
+          console.log('connected to keyboard analog')
+          device_id = ref.get(deviceBuffer.buffer, 0, DevicePointer).deref().device_id
+          codeBuffer = new Uint16Array(BUFFER_SIZE)
+          analogBuffer = new Float32Array(BUFFER_SIZE)
+      } else {
+          console.log('analog sdk cannot connect')
+      }
+
+      analogBufferInterval = setInterval( () => {
+          [ codeBuffer, analogBuffer ] = updateBuffers(codeBuffer, analogBuffer, device_id, mapper)
+      }, UPDATE_INTERVAL)
   }
-}
 
-const updateBuffers = (codeBuffer, analogBuffer, device_id, mapper) => {
-    const newCodeBuffer = new Uint16Array(BUFFER_SIZE)
-    const newAnalogBuffer = new Float32Array(BUFFER_SIZE)
-
-    let updated = false
-
-    wootingAnalogLib.wooting_analog_read_full_buffer_device(newCodeBuffer, newAnalogBuffer, BUFFER_SIZE, device_id);
-    if(newCodeBuffer.toString() != codeBuffer.toString()){
-      const hidList = []
-      newCodeBuffer.forEach( code => {
-        if(code > 0 && !codeBuffer.includes(code)){
-          hidList.push({hid_id: code, velocity: 127, pressed: true})
-        }
-      });
-      codeBuffer.forEach( code => {
-        if(code > 0 && !newCodeBuffer.includes(code)){
-          hidList.push({hid_id: code, velocity: 0, pressed: false})
-        }
-      });
-      mapper(hidList)
-      codeBuffer = newCodeBuffer;
-      analogBuffer = newAnalogBuffer;
+  const disconnect =  () => {
+    if(analogBufferInterval){
+      clearInterval(analogBufferInterval)
     }
-    return [ codeBuffer, analogBuffer,  ]
-}
+  }
 
-export default {
-  connect,
-  disconnect
+  const updateBuffers = (codeBuffer, analogBuffer, device_id, mapper) => {
+      const newCodeBuffer = new Uint16Array(BUFFER_SIZE)
+      const newAnalogBuffer = new Float32Array(BUFFER_SIZE)
+
+      let updated = false
+
+      wootingAnalogLib.wooting_analog_read_full_buffer_device(newCodeBuffer, newAnalogBuffer, BUFFER_SIZE, device_id);
+      if(newCodeBuffer.toString() != codeBuffer.toString()){
+        const hidList = []
+        newCodeBuffer.forEach( code => {
+          if(code > 0 && !codeBuffer.includes(code)){
+            hidList.push({hid_id: code, velocity: 127, pressed: true})
+          }
+        });
+        codeBuffer.forEach( code => {
+          if(code > 0 && !newCodeBuffer.includes(code)){
+            hidList.push({hid_id: code, velocity: 0, pressed: false})
+          }
+        });
+        mapper(hidList)
+        codeBuffer = newCodeBuffer;
+        analogBuffer = newAnalogBuffer;
+      }
+      return [ codeBuffer, analogBuffer,  ]
+  }
+
+  return {
+    connect,
+    disconnect
+  }
+
 }
