@@ -1,4 +1,3 @@
-import * as jzz from 'jzz';
 const midi = require('easymidi');
 
 export default () => {

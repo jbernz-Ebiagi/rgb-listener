@@ -34,11 +34,17 @@ export default () => {
         }
 
         rgbUpdateInterval = setInterval( () => {
-            const colorArray = _newColorArray()
-            for(const key of keyMap){
-                colorArray[key.row][key.column] = key.color(state, key)
+            try{
+                const colorArray = _newColorArray()
+                for(const key of keyMap){
+                    colorArray[key.row][key.column] = key.color(state, key)
+                }
+                _update(colorArray)
             }
-            _update(colorArray)
+            catch(e){
+                console.log(e)
+            }
+
         }, UPDATE_INTERVAL)
 
     }

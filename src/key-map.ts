@@ -23,7 +23,6 @@ const loopXControls = {
     //lcommand: "quantize_loop {key_name}",
 }
 
-
 const utilityXControls = {
     none: "recall_snap {param_name}",
     snap: "recall_snap {param_name}",

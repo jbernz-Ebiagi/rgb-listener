@@ -1,9 +1,12 @@
-import { IKey } from '../types'
+import { Command, IKey, State } from '../types'
 import rgbMap from '../rgb_map'
 import mainKey from './main_key';
 import modifierKey from './modifier_key';
 import tildeKey from './tilde_key'
 import functionKey from './function_key'
+import octaveKey from './octave_key'
+import snapKey from './snap_key'
+import recallKey from './recall_key';
 
 const keyMap: IKey[] = [
   tildeKey,
@@ -368,6 +371,22 @@ const keyMap: IKey[] = [
     midi_note: 44
   },
   {
+    ...octaveKey,
+    key_name: 'backspace',
+    param_name: -1,
+    hid_id: 42,
+    row: 1,
+    column: 13,
+  },
+  {
+    ...octaveKey,
+    key_name: 'backslash',
+    param_name: 1,
+    hid_id: 49,
+    row: 2,
+    column: 13,
+  },
+  {
     ...functionKey,
     key_name: 'f1',
     param_name: 0,
@@ -464,6 +483,107 @@ const keyMap: IKey[] = [
     column: 13,
   },
   {
+    ...snapKey,
+    key_name: 'insert',
+    param_name: 0,
+    hid_id: 73,
+    row: 1,
+    column: 14,
+  },
+  {
+    ...snapKey,
+    key_name: 'home',
+    param_name: 1,
+    hid_id: 74,
+    row: 1,
+    column: 15,
+  },
+  {
+    ...snapKey,
+    key_name: 'page_up',
+    param_name: 2,
+    hid_id: 75,
+    row: 1,
+    column: 16,
+  },
+  {
+    ...snapKey,
+    key_name: 'delete',
+    param_name: 3,
+    hid_id: 76,
+    row: 2,
+    column: 14,
+  },
+  {
+    ...snapKey,
+    key_name: 'end',
+    param_name: 4,
+    hid_id: 77,
+    row: 2,
+    column: 15,
+  },
+  {
+    ...snapKey,
+    key_name: 'page_down',
+    param_name: 5,
+    hid_id: 78,
+    row: 2,
+    column: 16,
+  },
+  {
+    ...recallKey,
+    key_name: 'left_arrow',
+    param_name: 2,
+    hid_id: 80,
+    row: 5,
+    column: 14,
+},
+{
+  ...recallKey,
+    key_name: 'down_arrow',
+    param_name: 4,
+    hid_id: 81,
+    row: 5,
+    column: 15,
+},
+{
+  ...recallKey,
+    key_name: 'up_arrow',
+    param_name: 0,
+    hid_id: 82,
+    row: 4,
+    column: 15,
+},
+{
+  ...recallKey,
+    key_name: 'right_arrow',
+    param_name: 8,
+    hid_id: 79,
+    row: 5,
+    column: 16,
+},
+{
+  key_name: 'spacebar',
+  commands: {
+      on: (state,self)=>{
+        return [['XCONTROL', self.xControls[0]]]
+      },
+      off: (state,self)=>{
+        return [['XCONTROL', self.xControls[1]]]
+      }
+  },
+  xControls: [
+    'mute_all_loops',
+    'unmute_all_loops'
+  ],
+  color: (self, state) => {
+    return rgbMap['dark'][0]
+  },
+  hid_id: 44,
+  row: 5,
+  column: 5,
+},
+  {
     ...modifierKey,
     key_name: 'escape',
     param_name: 'esc',
@@ -473,10 +593,45 @@ const keyMap: IKey[] = [
   },
   {
     ...modifierKey,
+    commands: {
+      on: (state, self) => {
+        if (state.modifiers.capslock) {
+          return [['SET_MODIFIER', [self.param_name, false]]]
+        }
+        return [['SET_MODIFIER', [self.param_name, true]]]
+      },
+      off: (state, self) => {
+        if (state.modifiers.capslock) {
+          return [['SET_MODIFIER', [self.param_name, true]]]
+        }
+        return [['SET_MODIFIER', [self.param_name, false]]]
+      },
+    },
     key_name: 'tab',
     param_name: 'tab',
     hid_id: 43,
     row: 2,
+    column: 0,
+  },
+  {
+    commands: {
+      on: (state, self) => {
+        return [
+          ['SET_MODIFIER', ['capslock', !state.modifiers.capslock]],
+          ['SET_MODIFIER', ['tab', !state.modifiers.capslock]],
+        ]
+      }
+    },
+    color: (state, self) => {
+      if (state.modifiers[self.param_name]) {
+        return rgbMap['white'][1]
+      }
+      return rgbMap['blue'][0]
+    },
+    key_name: 'capslock',
+    param_name: 'capslock',
+    hid_id: 57,
+    row: 3,
     column: 0,
   },
   {
@@ -512,6 +667,56 @@ const keyMap: IKey[] = [
     column: 2,
   },
   {
+    key_name: 'right_alt',
+    xControls: ['toggle_input {param_name}'],
+    commands: {
+      on: (state, self) => {
+        return [['XCONTROL', self.xControls[0]]]
+      }
+    },
+    color: (state, self) => {
+      if (state.ableton.inputs[self.param_name]) {
+        return rgbMap[state.ableton.inputs[self.param_name]][1]
+      }
+      return rgbMap['dark'][0]
+    },
+    param_name: 'MIC',
+    hid_id: 230,
+    row: 5,
+    column: 10,
+  },
+  {
+    key_name: 'right_command',
+    color: (state, self) => {
+      if (state.ableton.inputs[self.param_name]) {
+        return rgbMap[state.ableton.inputs[self.param_name]][1]
+      }
+      return rgbMap['dark'][0]
+    },
+    param_name: 'WOOT',
+    hid_id: 231,
+    row: 5,
+    column: 11,
+  },
+  {
+    key_name: 'fn',
+    color: (state, self) => {
+      if (state.ableton.inputs[self.param_name]) {
+        return rgbMap[state.ableton.inputs[self.param_name]][1]
+      }
+      return rgbMap['dark'][0]
+    },
+    commands: {
+      on: (state, self) => {
+        return [['TOGGLE_AS', null]]
+      }
+    },
+    param_name: 'AS',
+    hid_id: 769,
+    row: 5,
+    column: 12,
+  },
+  {
     key_name: 'right_control',
     commands: {
       off: () => { return [['TOGGLE_EBIAGI', null]] }
@@ -523,6 +728,53 @@ const keyMap: IKey[] = [
     row: 5,
     column: 13,
   },
+  {
+    key_name: 'pause',
+    xControls: ['toggle_metronome'],
+    commands: {
+      on: (state, self) => {
+        return [['XCONTROL', self.xControls[0]]]
+      }
+    },
+    color: (state, self) => {
+      if (state.ableton.metronome){
+        return rgbMap['blue'][1]
+      }
+      return rgbMap['dark'][0]
+    },
+    hid_id: 70,
+    row: 0,
+    column: 14,
+},
+{
+  key_name: 'print_screen',
+  xControls: [
+    "select_global_loop",
+    "stop_global_loop",
+    "clear_global_loop"
+  ],
+  commands: {
+    on: (state, self) => {
+      if(state.modifiers.lshift){
+        return [['XCONTROL', self.xControls[1]]]
+      }
+      if(state.modifiers.lctrl){
+        return [['XCONTROL', self.xControls[2]]]
+      }
+      return [['XCONTROL', self.xControls[0]]]
+    }
+  },
+  color: (state, self) => {
+    const loop = state.ableton.globalLoop
+    if(loop.color){
+      return rgbMap[loop.color][loop.brightness]
+    }
+    return rgbMap['dark'][0]
+  },
+  hid_id: 72,
+  row: 0,
+  column: 15,
+}
 ]
 
 const parseXControl = (control: string, key: IKey) => {

@@ -16,7 +16,8 @@ const Ebiagi = () => {
       'lctrl': false,
       'lcommand': false,
       'lalt': false,
-      'esc': false
+      'esc': false,
+      'capslock': false
     },
     octave: 3,
     ableton: {
@@ -31,6 +32,7 @@ const Ebiagi = () => {
       ginstr: [],
       metronome: false 
     },
+    notes: [],
     active: false,
   }
 

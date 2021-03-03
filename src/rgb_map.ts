@@ -60,7 +60,11 @@ const rgbMap: { [s: string]: RGB[] } = {
     { r: 89, g: 0, b: 135 }
   ],
 
-  'dark': [{ r: 0, g: 0, b: 0 }]
+  'dark': [
+    { r: 0, g: 0, b: 0 },
+    { r: 0, g: 0, b: 0 },
+    { r: 0, g: 0, b: 0 }
+  ]
 }
 
 export default rgbMap

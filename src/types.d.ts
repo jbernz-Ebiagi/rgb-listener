@@ -1,6 +1,6 @@
 export interface IKey {
 	key_name: string;
-	commands: {
+	commands?: {
 		on?: (state: State, self: IKey) => Command[]
 		off?: (state: State, self: IKey) => Command[]
 	};
@@ -19,7 +19,8 @@ export type ModifierTypes =
 	'lctrl' |
 	'lcommand' |
 	'lalt' |
-	'esc'
+	'esc' |
+	'capslock'
 
 export type CommandTypes =
 	'NOTE_ON' |
@@ -28,6 +29,9 @@ export type CommandTypes =
 	'TOGGLE_MODIFIER' |
 	'SET_MODIFIER' |
 	'TOGGLE_EBIAGI' |
+	'CHANGE_OCTAVE' |
+	'FLUSH_MIDI' |
+	'TOGGLE_AS' |
 	'NONE'
 
 export type Command = [CommandTypes, any] 
@@ -42,6 +46,7 @@ export interface State {
 	modifiers: { [key in ModifierTypes]: boolean },
 	octave: number,
 	ableton: AbletonData,
+	notes: number[],
 	active: boolean
 }
 
@@ -55,7 +60,7 @@ interface AbletonData {
   clips: [],
   inputs: {},
   snaps: [],
-  globalLoop: {},
+  globalLoop: {color?: string, brightness?: number},
   mfx: [],
   instr: [],
   loops: {},

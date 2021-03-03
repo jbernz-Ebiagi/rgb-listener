@@ -1,5 +1,6 @@
 import { State, HidEvent, Command, CommandTypes, ModifierTypes } from './types'
 import keyMap from './key_functions/key_map'
+import {keyTap} from 'robotjs'
 const xControlMap = require('../dist/X-Controls.json')
 
 const toggleModifier = (modifier: ModifierTypes, state: State) => {
@@ -30,15 +31,34 @@ const _disable = (state: State, modules) => {
 
 const sendNoteOn = (note: number, state: State, modules) => {
   modules.midiOut.sendNoteOn(0, note)
+  state.notes[note] = 1
 }
 
 const sendNoteOff = (note: number, state: State, modules) => {
   modules.midiOut.sendNoteOff(0, note)
+  state.notes[note] = 0
 }
 
 const sendXControl = (xControl: string, state: State, modules) => {
   const note = xControlMap[xControl]
   modules.midiOut.sendNoteOn(note[0], note[1])
+}
+
+const changeOctave = (by: number, state: State) => {
+  state.octave = state.octave + by
+  if (state.octave < 0) state.octave = 0
+  if (state.octave > 5) state.octave = 5
+}
+
+const flushMidi = (note: number, state: State, modules) => {
+  for(let i=0; i< 128; i++){
+    modules.midiOut.sendNoteOff(0, i)
+  }
+  state.notes = []
+}
+
+const toggleAS = () => {
+  keyTap('`',['alt'])
 }
 
 const commandMap : {
@@ -50,6 +70,9 @@ const commandMap : {
   'NOTE_ON': sendNoteOn,
   'NOTE_OFF': sendNoteOff,
   'XCONTROL': sendXControl,
+  'CHANGE_OCTAVE': changeOctave,
+  'FLUSH_MIDI': flushMidi,
+  'TOGGLE_AS': toggleAS,
   'NONE': () => {return}
 }
 
@@ -77,6 +100,7 @@ export const commandMapper = (state: State, modules, hidList: HidEvent[]) => {
 }
 
 export const runCommand = (command: Command, state: State, modules) => {
+  if(!state.active && command[0] != 'TOGGLE_EBIAGI') return
   console.log(command)
   commandMap[command[0]](command[1], state, modules)
 }
