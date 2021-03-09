@@ -47,7 +47,8 @@ export interface State {
 	octave: number,
 	ableton: AbletonData,
 	notes: number[],
-	active: boolean
+	active: boolean,
+	midiOut: boolean
 }
 
 export interface HidEvent {
@@ -66,5 +67,6 @@ interface AbletonData {
   loops: {},
   modules: [],
   ginstr: [],
-  metronome: false 
+  metronome: false,
+  smart_record: {color?: string, brightness?: number}
 }

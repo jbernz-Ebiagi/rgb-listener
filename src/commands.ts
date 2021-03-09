@@ -1,6 +1,7 @@
 import { State, HidEvent, Command, CommandTypes, ModifierTypes } from './types'
 import keyMap from './key_functions/key_map'
 import {keyTap} from 'robotjs'
+import { clear } from 'console'
 const xControlMap = require('../dist/X-Controls.json')
 
 const toggleModifier = (modifier: ModifierTypes, state: State) => {
@@ -29,12 +30,25 @@ const _disable = (state: State, modules) => {
   state.active = false
 }
 
+let midiOutDebounce
+const _triggerMidiOut = (state: State) => {
+  state.midiOut = true
+  if (midiOutDebounce) {
+    clearTimeout(midiOutDebounce)
+  }
+  midiOutDebounce = setTimeout(() => {
+    state.midiOut = false
+  }, 300)
+}
+
 const sendNoteOn = (note: number, state: State, modules) => {
+  _triggerMidiOut(state)
   modules.midiOut.sendNoteOn(0, note)
   state.notes[note] = 1
 }
 
 const sendNoteOff = (note: number, state: State, modules) => {
+  _triggerMidiOut(state)
   modules.midiOut.sendNoteOff(0, note)
   state.notes[note] = 0
 }

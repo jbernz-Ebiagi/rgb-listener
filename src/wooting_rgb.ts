@@ -34,15 +34,17 @@ export default () => {
         }
 
         rgbUpdateInterval = setInterval( () => {
-            try{
-                const colorArray = _newColorArray()
-                for(const key of keyMap){
-                    colorArray[key.row][key.column] = key.color(state, key)
+            if(!state.midiOut){
+                try{
+                    const colorArray = _newColorArray()
+                    for(const key of keyMap){
+                        colorArray[key.row][key.column] = key.color(state, key)
+                    }
+                    _update(colorArray)
                 }
-                _update(colorArray)
-            }
-            catch(e){
-                console.log(e)
+                catch(e){
+                    console.log(e)
+                }
             }
 
         }, UPDATE_INTERVAL)
@@ -57,11 +59,13 @@ export default () => {
 
     const _update = (colorArray:RGB[][]) => {
         const dylibArray = [];
-        colorArray.forEach(row => row.forEach(col => {
-            dylibArray.push(col.r)
-            dylibArray.push(col.g)
-            dylibArray.push(col.b)
-        }));
+        for (const row of colorArray){
+            for (const col of row){
+                dylibArray.push(col.r)
+                dylibArray.push(col.g)
+                dylibArray.push(col.b) 
+            }
+        }
         const dylibBuffer = Uint8Array.from(dylibArray)
         
         wootingRgbLib.wooting_rgb_array_set_full(dylibBuffer)

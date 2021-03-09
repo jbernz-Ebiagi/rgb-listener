@@ -6,6 +6,7 @@ import midiOut from './midi_out'
 import abletonSocket from './ableton_socket'
 import { runCommand, commandMapper } from './commands'
 
+let interval
 
 const Ebiagi = () => {
 
@@ -30,10 +31,12 @@ const Ebiagi = () => {
       loops: [],
       modules: [],
       ginstr: [],
-      metronome: false 
+      metronome: false,
+      smart_record: {}
     },
     notes: [],
-    active: false,
+    midiOut: false,
+    active: false
   }
 
   const modules = {

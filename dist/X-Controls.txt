@@ -271,8 +271,10 @@
 269_right_arrow = NOTE, 4, 15, 0, 0, recall_snap 8
 270_spacebar = NOTE, 4, 16, 0, 0, mute_all_loops
 271_spacebar = NOTE, 4, 17, 0, 0, unmute_all_loops
-272_right_alt = NOTE, 4, 18, 0, 0, toggle_input MIC
-273_pause = NOTE, 4, 19, 0, 0, toggle_metronome
-274_print_screen = NOTE, 4, 20, 0, 0, select_global_loop
-275_print_screen = NOTE, 4, 21, 0, 0, stop_global_loop
-276_print_screen = NOTE, 4, 22, 0, 0, clear_global_loop
+272_enter = NOTE, 4, 18, 0, 0, smart_record
+273_enter = NOTE, 4, 19, 0, 0, smart_clear
+274_right_alt = NOTE, 4, 20, 0, 0, toggle_input MIC
+275_pause = NOTE, 4, 21, 0, 0, toggle_metronome
+276_print_screen = NOTE, 4, 22, 0, 0, select_global_loop
+277_print_screen = NOTE, 4, 23, 0, 0, stop_global_loop
+278_print_screen = NOTE, 4, 24, 0, 0, clear_global_loop

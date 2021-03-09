@@ -583,6 +583,30 @@ const keyMap: IKey[] = [
   row: 5,
   column: 5,
 },
+{
+  key_name: 'enter',
+  commands: {
+      on: (state,self)=>{
+        if (state.modifiers.lctrl){
+          return [['XCONTROL', self.xControls[1]]]
+        }
+        return [['XCONTROL', self.xControls[0]]]
+      },
+  },
+  xControls: [
+    'smart_record',
+    'smart_clear'
+  ],
+  color: (state, self) => {
+    if(state.ableton.smart_record.color){
+      return rgbMap[state.ableton.smart_record.color][state.ableton.smart_record.brightness]
+    }
+    return rgbMap['dark'][0]
+  },
+  hid_id: 40,
+  row: 3,
+  column: 13,
+},
   {
     ...modifierKey,
     key_name: 'escape',
