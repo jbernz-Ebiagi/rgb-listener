@@ -14,12 +14,16 @@ const tildeKey: IKey = {
       if (state.modifiers.esc) {
         return [['XCONTROL', self.xControls[1]]]
       }
+      if (state.modifiers.lcommand) {
+        return [['XCONTROL', self.xControls[2]]]
+      }
       return []
     }
   },
   xControls: [
     'stop_all_loops',
     'rebuild_set',
+    'rearm_all'
   ],
   color: (state, self) => {
     if (state.modifiers.lshift) {

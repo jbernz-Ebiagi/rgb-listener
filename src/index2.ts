@@ -5,6 +5,7 @@ import hidBlocker from './hid_blocker'
 import midiOut from './midi_out'
 import abletonSocket from './ableton_socket'
 import { runCommand, commandMapper } from './commands'
+import { exec } from 'child_process'
 
 let interval
 
@@ -32,7 +33,8 @@ const Ebiagi = () => {
       modules: [],
       ginstr: [],
       metronome: false,
-      smart_record: {}
+      smart_record: {},
+      woot_arp: {device_on: 0}
     },
     notes: [],
     midiOut: false,
@@ -51,5 +53,22 @@ const Ebiagi = () => {
   runCommand(['TOGGLE_EBIAGI', true], state, modules)
 
 }
+
+const exitHandler = () => {
+  exec("sudo pmset -b sleep 5; sudo pmset -b disablesleep 0")
+}
+
+//do something when app is closing
+process.on('exit', exitHandler.bind(null,{cleanup:true}))
+
+//catches ctrl+c event
+process.on('SIGINT', exitHandler.bind(null, {exit:true}))
+
+// catches "kill pid" (for example: nodemon restart)
+process.on('SIGUSR1', exitHandler.bind(null, {exit:true}))
+process.on('SIGUSR2', exitHandler.bind(null, {exit:true}))
+
+//catches uncaught exceptions
+process.on('uncaughtException', exitHandler.bind(null, {exit:true}))
 
 Ebiagi() //init

@@ -69,4 +69,5 @@ interface AbletonData {
   ginstr: [],
   metronome: false,
   smart_record: {color?: string, brightness?: number}
+  woot_arp: {device_on: number}
 }

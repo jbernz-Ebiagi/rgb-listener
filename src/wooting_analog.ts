@@ -29,6 +29,7 @@ const wootingAnalogLib = ffi.Library('./libs/libwooting_analog_wrapper.dylib', {
 
 const BUFFER_SIZE = 10
 const UPDATE_INTERVAL = 1
+const PRESS_THRESHOLD = 0.15
 
 
 export default () => {
@@ -40,19 +41,20 @@ export default () => {
     wootingAnalogLib.wooting_analog_initialise();
     const deviceBuffer = new PVoidArray(BUFFER_SIZE)
     const result = wootingAnalogLib.wooting_analog_get_connected_devices_info(deviceBuffer, BUFFER_SIZE)
-    let device_id, codeBuffer, analogBuffer
+    let device_id, codeBuffer, analogBuffer, pressedKeys
 
     if (result > 0) {
       console.log('connected to keyboard analog')
       device_id = ref.get(deviceBuffer.buffer, 0, DevicePointer).deref().device_id
       codeBuffer = new Uint16Array(BUFFER_SIZE)
       analogBuffer = new Float32Array(BUFFER_SIZE)
+      pressedKeys = {}
     } else {
       console.log('analog sdk cannot connect')
     }
 
     analogBufferInterval = setInterval(() => {
-      [codeBuffer, analogBuffer] = updateBuffers(codeBuffer, analogBuffer, device_id, mapper)
+      [codeBuffer, analogBuffer] = updateBuffers(codeBuffer, analogBuffer, pressedKeys, device_id, mapper)
     }, UPDATE_INTERVAL)
   }
 
@@ -62,23 +64,53 @@ export default () => {
     }
   }
 
-  const updateBuffers = (codeBuffer, analogBuffer, device_id, mapper) => {
+  const updateBuffers = (codeBuffer, analogBuffer, pressedKeys, device_id, mapper) => {
     const newCodeBuffer = new Uint16Array(BUFFER_SIZE)
     const newAnalogBuffer = new Float32Array(BUFFER_SIZE)
 
     let updated = false
 
     wootingAnalogLib.wooting_analog_read_full_buffer_device(newCodeBuffer, newAnalogBuffer, BUFFER_SIZE, device_id);
-    if (newCodeBuffer.toString() != codeBuffer.toString()) {
+    if (newCodeBuffer.toString() != codeBuffer.toString() || newAnalogBuffer.toString() != analogBuffer.toString()) {
       const hidList = []
-      newCodeBuffer.forEach(code => {
-        if (code > 0 && !codeBuffer.includes(code)) {
-          hidList.push({ hid_id: code, velocity: 127, pressed: true })
+      newCodeBuffer.forEach((code, i) => {
+        if(code > 0) {
+          if(!pressedKeys[code]){
+            pressedKeys[code] = {ramp: 0, pressed: false}
+          }
+          //press has passed the threshold, send note on
+          if(!pressedKeys[code].pressed && newAnalogBuffer[i] >= PRESS_THRESHOLD){
+            // let velocity = Math.floor((newAnalogBuffer[i]^0.3)*127-pressedKeys[code].ramp*5)
+            let velocity = Math.floor(Math.pow(newAnalogBuffer[i],0.3)*127)
+            if(velocity < 0) velocity = 1
+            console.log(velocity)
+            hidList.push({ hid_id: code, velocity, pressed: true })
+            pressedKeys[code].pressed = true
+            pressedKeys[code].ramp = 0
+            console.log('press')
+          }
+          //press has returned from the threshold, send note off
+          else if(pressedKeys[code].pressed && newAnalogBuffer[i] < PRESS_THRESHOLD){
+            hidList.push({ hid_id: code, velocity: 0, pressed: false })
+            pressedKeys[code].pressed = false
+            pressedKeys[code].ramp = 0
+            console.log('release')
+          }
+          //press has not yet passed the threshold, increment ramp
+          // else if(!pressedKeys[code].pressed && newAnalogBuffer[i] < PRESS_THRESHOLD){
+          //   pressedKeys[code].ramp = pressedKeys[code].ramp+UPDATE_INTERVAL
+          //   console.log('ramp')
+          // }
         }
       });
       codeBuffer.forEach(code => {
         if (code > 0 && !newCodeBuffer.includes(code)) {
-          hidList.push({ hid_id: code, velocity: 0, pressed: false })
+          if(pressedKeys[code].pressed){
+            hidList.push({ hid_id: code, velocity: 0, pressed: false })
+            console.log('release')
+          }
+          pressedKeys[code].pressed = false
+          pressedKeys[code].ramp = 0
         }
       });
       mapper(hidList)

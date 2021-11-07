@@ -22,14 +22,15 @@ const mainKey = {
       if (state.modifiers.tab) {
         return [['NOTE_OFF', self.midi_note + 12*state.octave]]
       }
-      return [['NONE', null]]
+      return [['XCONTROL', self.xControls[4]]]
     }
   },
   xControls: [
     'select_loop {key_name}',
     'clear_loop {key_name}',
     'stop_loop {key_name}',
-    'quantize_loop {key_name}'
+    'quantize_loop {key_name}',
+    'deselect_loop {key_name}'
   ],
   color: (state, self) => {
     if (state.modifiers.tab) {

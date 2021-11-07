@@ -7,7 +7,7 @@ const functionKey = {
     'deselect_instrument {param_name}',
     'stop_instrument {param_name}',
     'activate_module {param_name}',
-    'reset_module {param_name'
+    'reset_module {param_name}'
   ],
   commands: {
     on: (state: State, self: IKey): Command[] => {

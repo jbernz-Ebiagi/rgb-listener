@@ -711,6 +711,7 @@ const keyMap: IKey[] = [
   },
   {
     key_name: 'right_command',
+    commands: {},
     color: (state, self) => {
       if (state.ableton.inputs[self.param_name]) {
         return rgbMap[state.ableton.inputs[self.param_name]][1]
@@ -730,12 +731,8 @@ const keyMap: IKey[] = [
       }
       return rgbMap['dark'][0]
     },
-    commands: {
-      on: (state, self) => {
-        return [['TOGGLE_AS', null]]
-      }
-    },
-    param_name: 'AS',
+    commands: {},
+    param_name: 'MFT',
     hid_id: 769,
     row: 5,
     column: 12,
