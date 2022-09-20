@@ -770,25 +770,17 @@ const keyMap: IKey[] = [
 {
   key_name: 'print_screen',
   xControls: [
-    "select_global_loop",
-    "stop_global_loop",
-    "clear_global_loop"
+    "start_crossfade",
   ],
   commands: {
     on: (state, self) => {
-      if(state.modifiers.lshift){
-        return [['XCONTROL', self.xControls[1]]]
-      }
-      if(state.modifiers.lctrl){
-        return [['XCONTROL', self.xControls[2]]]
-      }
       return [['XCONTROL', self.xControls[0]]]
     }
   },
   color: (state, self) => {
-    const loop = state.ableton.globalLoop
-    if(loop.color){
-      return rgbMap[loop.color][loop.brightness]
+    const loop = state.ableton.active_crossfade
+    if(state.ableton.active_crossfade){
+      return rgbMap['red'][2]
     }
     return rgbMap['dark'][0]
   },

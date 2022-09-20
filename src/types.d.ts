@@ -67,7 +67,8 @@ interface AbletonData {
   loops: {},
   modules: [],
   ginstr: [],
-  metronome: false,
+  metronome: boolean,
   smart_record: {color?: string, brightness?: number}
   woot_arp: {device_on: number}
+  active_crossfade: boolean
 }

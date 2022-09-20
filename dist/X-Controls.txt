@@ -333,6 +333,4 @@
 331_enter = NOTE, 4, 77, 0, 0, smart_clear
 332_right_alt = NOTE, 4, 78, 0, 0, toggle_input MIC
 333_pause = NOTE, 4, 79, 0, 0, toggle_metronome
-334_print_screen = NOTE, 4, 80, 0, 0, select_global_loop
-335_print_screen = NOTE, 4, 81, 0, 0, stop_global_loop
-336_print_screen = NOTE, 4, 82, 0, 0, clear_global_loop
+334_print_screen = NOTE, 4, 80, 0, 0, start_crossfade

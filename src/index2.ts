@@ -34,7 +34,8 @@ const Ebiagi = () => {
       ginstr: [],
       metronome: false,
       smart_record: {},
-      woot_arp: {device_on: 0}
+      woot_arp: {device_on: 0},
+      active_crossfade: false
     },
     notes: [],
     midiOut: false,
