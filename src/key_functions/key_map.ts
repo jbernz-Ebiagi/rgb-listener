@@ -7,6 +7,7 @@ import functionKey from './function_key'
 import octaveKey from './octave_key'
 import snapKey from './snap_key'
 import recallKey from './recall_key';
+import moduleKey from './module_key'
 
 const keyMap: IKey[] = [
   tildeKey,
@@ -450,34 +451,34 @@ const keyMap: IKey[] = [
     row: 0,
     column: 9,
   },
+  // {
+  //   ...functionKey,
+  //   key_name: 'f9',
+  //   param_name: 8,
+  //   hid_id: 66,
+  //   row: 0,
+  //   column: 10,
+  // },
+  // {
+  //   ...functionKey,
+  //   key_name: 'f10',
+  //   param_name: 9,
+  //   hid_id: 67,
+  //   row: 0,
+  //   column: 11,
+  // },
   {
-    ...functionKey,
-    key_name: 'f9',
-    param_name: 8,
-    hid_id: 66,
-    row: 0,
-    column: 10,
-  },
-  {
-    ...functionKey,
-    key_name: 'f10',
-    param_name: 9,
-    hid_id: 67,
-    row: 0,
-    column: 11,
-  },
-  {
-    ...functionKey,
+    ...moduleKey,
     key_name: 'f11',
-    param_name: 10,
+    param_name: 'A',
     hid_id: 68,
     row: 0,
     column: 12,
   },
   {
-    ...functionKey,
+    ...moduleKey,
     key_name: 'f12',
-    param_name: 11,
+    param_name: 'B',
     hid_id: 69,
     row: 0,
     column: 13,
@@ -790,16 +791,30 @@ const keyMap: IKey[] = [
 }
 ]
 
-const parseXControl = (control: string, key: IKey) => {
-  control = control.replace(/{key_name}/g, key.key_name);
-  return control.replace(/{param_name}/g, key.param_name as string);
+const pageSize = 8
+const pageMax = 4
+
+const parseXControl = (control: string, key: IKey, page?: number) => {
+  if(page != undefined){
+    control = control.replace(/{param_name}/g, String(key.param_name as number + pageSize*page))
+  } else{
+    control = control.replace(/{param_name}/g, key.param_name as string)
+  }
+  return control = control.replace(/{key_name}/g, key.key_name)
 }
 
 const parseKey = (key: IKey) => {
-  const parsedXControls = []
+  const parsedXControls:string[] = []
   if (key.xControls) {
     for (let i = 0; i < key.xControls.length; i++) {
-      parsedXControls[i] = parseXControl(key.xControls[i], key)
+      if(key.pageable){
+        for(let n = 0; n < pageMax; n++){
+          parsedXControls.push(parseXControl(key.xControls[i], key, n))
+        }
+      } else{
+        parsedXControls.push(parseXControl(key.xControls[i], key))
+      }
+
     }
   }
   return { ...key, xControls: parsedXControls }

@@ -82,6 +82,10 @@ const toggleAS = () => {
   keyTap('`',['alt'])
 }
 
+const selectModule = (slot: string, state: State) => {
+  state.activeModules[slot] = !state.activeModules[slot]
+}
+
 const commandMap : {
   [K in CommandTypes]: (param: any, state: State, modules, velocity?: number) => void
 } = {
@@ -92,6 +96,7 @@ const commandMap : {
   'NOTE_OFF': sendNoteOff,
   'XCONTROL': sendXControl,
   'CHANGE_OCTAVE': changeOctave,
+  'SELECT_MODULE': selectModule,
   'FLUSH_MIDI': flushMidi,
   'TOGGLE_AS': toggleAS,
   'NONE': () => {return}

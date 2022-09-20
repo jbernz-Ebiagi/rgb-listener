@@ -6,11 +6,13 @@ const dict = {}
 
 for(const k of keyMap) {
     for(const xControl of k.xControls){
-        const note = counter % 127
-        const channel = Math.floor(counter/127)+2
-        rules.push(`${counter}_${k.key_name} = NOTE, ${channel}, ${note}, 0, 0, ${xControl}`)
-        dict[xControl] = [channel-1, note]
-        counter++
+        if(dict[xControl] == undefined){
+            const note = counter % 127
+            const channel = Math.floor(counter/127)+2
+            rules.push(`${counter} = NOTE, ${channel}, ${note}, 0, 0, ${xControl}`)
+            dict[xControl] = [channel-1, note]
+            counter++
+        }
     }
 }
 

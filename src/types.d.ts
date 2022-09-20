@@ -11,6 +11,7 @@ export interface IKey {
 	midi_note?: number;
 	row: number;
 	column: number;
+  pageable?: boolean;
 }
 
 export type ModifierTypes =
@@ -31,6 +32,7 @@ export type CommandTypes =
 	'TOGGLE_EBIAGI' |
 	'CHANGE_OCTAVE' |
 	'FLUSH_MIDI' |
+  'SELECT_MODULE' |
 	'TOGGLE_AS' |
 	'NONE'
 
@@ -49,6 +51,10 @@ export interface State {
 	notes: number[],
 	active: boolean,
 	midiOut: boolean
+	activeModules: {
+		A: boolean
+		B: boolean
+	}
 }
 
 export interface HidEvent {
@@ -71,4 +77,8 @@ interface AbletonData {
   smart_record: {color?: string, brightness?: number}
   woot_arp: {device_on: number}
   active_crossfade: boolean
+  active_modules: {
+	  A?: {color: string}
+	  B?: {color: string}
+  }
 }

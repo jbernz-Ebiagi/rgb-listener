@@ -35,11 +35,16 @@ const Ebiagi = () => {
       metronome: false,
       smart_record: {},
       woot_arp: {device_on: 0},
-      active_crossfade: false
+      active_crossfade: false,
+      active_modules: {}
     },
     notes: [],
     midiOut: false,
-    active: false
+    active: false,
+    activeModules: {
+      A: false,
+      B: false
+    }
   }
 
   const modules = {

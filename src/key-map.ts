@@ -735,10 +735,10 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: {
-            none: 'recall_snap 4',
-            snap: 'recall_snap 4'
+            none: 'select_module A',
+            lctrl: 'clear_module A'
         },
-        param_name: 'UTILITY2',
+        param_name: 'MODULEA',
         hid_id: 68,
         row: 0,
         column: 12,
@@ -750,10 +750,10 @@ export const keyMap:IKey[] = [
             off: 'send_midi_off:{mod_channel}|{hid_id}'
         },
         x_control: {
-            none: 'recall_snap 8',
-            snap: 'recall_snap 8'
+            none: 'select_module B',
+            lctrl: 'clear_module B'
         },
-        param_name: 'UTILITY3',
+        param_name: 'MODULEB',
         hid_id: 69,
         row: 0,
         column: 13,
