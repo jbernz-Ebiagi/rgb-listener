@@ -6,8 +6,8 @@ const functionKey = {
     'select_instrument {param_name}',
     'deselect_instrument {param_name}',
     'stop_instrument {param_name}',
-    'assign_module {param_name} A',
-    'assign_module {param_name} B'
+    'assign_module {param_name},A',
+    'assign_module {param_name},B'
   ],
   commands: {
     on: (state: State, self: IKey): Command[] => {
@@ -15,15 +15,15 @@ const functionKey = {
         return [['XCONTROL', self.xControls[2]]]
       }
       if (state.activeModules.A) {
-        return [['XCONTROL', self.xControls[3]]]
+        return [['XCONTROL', self.xControls[3]],['SELECT_MODULE', ['A']]]
       }
       if (state.activeModules.B) {
-        return [['XCONTROL', self.xControls[4]]]
+        return [['XCONTROL', self.xControls[4]],['SELECT_MODULE', ['B']]]
       }
       return [['XCONTROL', self.xControls[0]]]
     },
     off: (state: State, self: IKey): Command[] => {
-      if (state.modifiers.esc || state.modifiers.lctrl || state.modifiers.lshift) {
+      if (state.modifiers.esc || state.modifiers.lctrl || state.modifiers.lshift || state.activeModules.A || state.activeModules.B) {
         return []
       }
       return [['XCONTROL', self.xControls[1]]]

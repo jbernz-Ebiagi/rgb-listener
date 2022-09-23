@@ -1,11 +1,11 @@
-import keyMap from './key_functions/key_map'
+import {keyMap} from './key_functions/key_map'
 
 let counter = 0
 const rules = []
 const dict = {}
 
 for(const k of keyMap) {
-    for(const xControl of k.xControls){
+    for(const xControl of k.parsedXControls){
         if(dict[xControl] == undefined){
             const note = counter % 127
             const channel = Math.floor(counter/127)+2

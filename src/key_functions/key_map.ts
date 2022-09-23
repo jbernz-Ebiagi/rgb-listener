@@ -9,7 +9,7 @@ import snapKey from './snap_key'
 import recallKey from './recall_key';
 import moduleKey from './module_key'
 
-const keyMap: IKey[] = [
+const keys: IKey[] = [
   tildeKey,
   {
     ...mainKey,
@@ -791,11 +791,9 @@ const keyMap: IKey[] = [
 }
 ]
 
-const pageSize = 8
-const pageMax = 4
 
-const parseXControl = (control: string, key: IKey, page?: number) => {
-  if(page != undefined){
+export const parseXControl = (control: string, key: IKey, page?: number, pageSize?: number) => {
+  if(page != undefined && pageSize != undefined){
     control = control.replace(/{param_name}/g, String(key.param_name as number + pageSize*page))
   } else{
     control = control.replace(/{param_name}/g, key.param_name as string)
@@ -804,12 +802,14 @@ const parseXControl = (control: string, key: IKey, page?: number) => {
 }
 
 const parseKey = (key: IKey) => {
+  const pageSize = 8
+  const pageMax = 4
   const parsedXControls:string[] = []
   if (key.xControls) {
     for (let i = 0; i < key.xControls.length; i++) {
       if(key.pageable){
         for(let n = 0; n < pageMax; n++){
-          parsedXControls.push(parseXControl(key.xControls[i], key, n))
+          parsedXControls.push(parseXControl(key.xControls[i], key, n, pageSize))
         }
       } else{
         parsedXControls.push(parseXControl(key.xControls[i], key))
@@ -817,7 +817,7 @@ const parseKey = (key: IKey) => {
 
     }
   }
-  return { ...key, xControls: parsedXControls }
+  return { ...key, parsedXControls: parsedXControls }
 }
 
-export default keyMap.map(parseKey)
+export const keyMap = keys.map(parseKey)

@@ -1,5 +1,5 @@
 import { State, HidEvent, Command, CommandTypes, ModifierTypes } from './types'
-import keyMap from './key_functions/key_map'
+import {keyMap} from './key_functions/key_map'
 import {keyTap} from 'robotjs'
 import { clear } from 'console'
 import { ChildProcess, exec } from 'child_process'
@@ -61,7 +61,7 @@ const sendNoteOff = (note: number, state: State, modules) => {
 }
 
 const sendXControl = (xControl: string, state: State, modules) => {
-  const note = xControlMap[xControl]
+  const note = xControlMap[parseXControl(xControl)]
   modules.midiOut.sendNoteOn(note[0], note[1])
 }
 
