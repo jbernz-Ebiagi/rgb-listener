@@ -61,7 +61,7 @@ const sendNoteOff = (note: number, state: State, modules) => {
 }
 
 const sendXControl = (xControl: string, state: State, modules) => {
-  const note = xControlMap[parseXControl(xControl)]
+  const note = xControlMap[xControl]
   modules.midiOut.sendNoteOn(note[0], note[1])
 }
 
@@ -86,6 +86,20 @@ const selectModule = (slot: string, state: State) => {
   state.activeModules[slot] = !state.activeModules[slot]
 }
 
+const pageInstrument = (param:number, state:State) => {
+  const maxPages = Math.floor(state.ableton.instr.length/state.pageSize)+1
+  if (state.instrumentPage + param >= 0 && state.instrumentPage + param < maxPages){
+    state.instrumentPage += param
+  }
+}
+
+const pageModule = (param:number, state:State) => {
+  const maxPages = Math.floor(state.ableton.modules.length/state.pageSize)+1
+  if (state.modulePage + param >= 0 && state.modulePage + param < maxPages){
+    state.modulePage += param
+  }
+}
+
 const commandMap : {
   [K in CommandTypes]: (param: any, state: State, modules, velocity?: number) => void
 } = {
@@ -99,6 +113,8 @@ const commandMap : {
   'SELECT_MODULE': selectModule,
   'FLUSH_MIDI': flushMidi,
   'TOGGLE_AS': toggleAS,
+  'INSTRUMENT_PAGE': pageInstrument,
+  'MODULE_PAGE': pageModule,
   'NONE': () => {return}
 }
 

@@ -1,5 +1,6 @@
 import rgbMap from "../rgb_map"
 import { State, IKey, Command } from "../types"
+import { parseXControl } from "./key_map"
 
 const tildeKey: IKey = {
   key_name: 'tilde',
@@ -9,13 +10,13 @@ const tildeKey: IKey = {
   commands: {
     on: (state: State, self: IKey): Command[] => {
       if (state.modifiers.lshift) {
-        return [['XCONTROL', self.xControls[0]]]
+        return [['XCONTROL', parseXControl(self.xControls[0],self)]]
       }
       if (state.modifiers.esc) {
-        return [['XCONTROL', self.xControls[1]]]
+        return [['XCONTROL', parseXControl(self.xControls[1],self)]]
       }
       if (state.modifiers.lcommand) {
-        return [['XCONTROL', self.xControls[2]]]
+        return [['XCONTROL', parseXControl(self.xControls[2],self)]]
       }
       return []
     }

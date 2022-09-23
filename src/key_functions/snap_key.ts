@@ -1,5 +1,6 @@
 import rgbMap from "../rgb_map"
 import { State, IKey, Command } from "../types"
+import { parseXControl } from "./key_map"
 
 const octaveKey = {
   xControls: [
@@ -13,24 +14,24 @@ const octaveKey = {
   commands: {
     on: (state: State, self: IKey): Command[] => {
       if (state.modifiers.tab) {
-        return [['XCONTROL', self.xControls[4]]]
+        return [['XCONTROL', parseXControl(self.xControls[4],self)]]
       }
       if (state.modifiers.lalt) {
-        return [['XCONTROL', self.xControls[1]]]
+        return [['XCONTROL', parseXControl(self.xControls[1],self)]]
       }
       if (state.modifiers.lctrl) {
-        return [['XCONTROL', self.xControls[2]]]
+        return [['XCONTROL', parseXControl(self.xControls[2],self)]]
       }
-      return [['XCONTROL', self.xControls[0]]]
+      return [['XCONTROL', parseXControl(self.xControls[0],self)]]
     },
     off: (state: State, self: IKey): Command[] => {
       if (state.modifiers.tab) {
         if (state.modifiers.tab) {
-          return [['XCONTROL', self.xControls[5]]]
+          return [['XCONTROL', parseXControl(self.xControls[5],self)]]
         }
       }
       if (!state.modifiers.lalt && !state.modifiers.lctrl) {
-        return [['XCONTROL', self.xControls[3]]]
+        return [['XCONTROL', parseXControl(self.xControls[3],self)]]
       }
       return []
     }

@@ -1,5 +1,7 @@
 import rgbMap from "../rgb_map"
 import { State, IKey, Command } from "../types"
+import { parseXControl } from "./key_map"
+import { flash } from "../animations"
 
 const mainKey = {
   commands: {
@@ -8,21 +10,21 @@ const mainKey = {
         return [['NOTE_ON', self.midi_note + 12*state.octave]]
       }
       if (state.modifiers.lctrl) {
-        return [['XCONTROL', self.xControls[1]]] //clear_loop
+        return [['XCONTROL', parseXControl(self.xControls[1],self)]] //clear_loop
       }
       if (state.modifiers.lshift) {
-        return [['XCONTROL', self.xControls[2]]] //stop_loop
+        return [['XCONTROL', parseXControl(self.xControls[2],self)]] //stop_loop
       }
       if (state.modifiers.lalt) {
-        return [['XCONTROL', self.xControls[3]]] //quantize_loop
+        return [['XCONTROL', parseXControl(self.xControls[3],self)]] //quantize_loop
       }
-      return [['XCONTROL', self.xControls[0]]] //select_loop
+      return [['XCONTROL', parseXControl(self.xControls[0],self)]] //select_loop
     },
     off: (state: State, self: IKey): Command[] => {
       if (state.modifiers.tab) {
         return [['NOTE_OFF', self.midi_note + 12*state.octave]]
       }
-      return [['XCONTROL', self.xControls[4]]]
+      return [['XCONTROL', parseXControl(self.xControls[4],self)]]
     }
   },
   xControls: [
@@ -44,6 +46,9 @@ const mainKey = {
     }
     const data = state.ableton.loops[self.key_name]
     if(data){
+      if (data.brightness == 3){
+        return flash(rgbMap[data.color][2])
+      }
       return rgbMap[data.color][data.brightness]
     }
     return rgbMap['dark'][0]

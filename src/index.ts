@@ -44,7 +44,11 @@ const Ebiagi = () => {
     activeModules: {
       A: false,
       B: false
-    }
+    },
+    instrumentPage: 0,
+    modulePage: 0,
+    pageSize: 8,
+    maxPages: 4
   }
 
   const modules = {

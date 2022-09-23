@@ -8,6 +8,7 @@ import octaveKey from './octave_key'
 import snapKey from './snap_key'
 import recallKey from './recall_key';
 import moduleKey from './module_key'
+import functionPageKey from './function_page_key'
 
 const keys: IKey[] = [
   tildeKey,
@@ -451,22 +452,22 @@ const keys: IKey[] = [
     row: 0,
     column: 9,
   },
-  // {
-  //   ...functionKey,
-  //   key_name: 'f9',
-  //   param_name: 8,
-  //   hid_id: 66,
-  //   row: 0,
-  //   column: 10,
-  // },
-  // {
-  //   ...functionKey,
-  //   key_name: 'f10',
-  //   param_name: 9,
-  //   hid_id: 67,
-  //   row: 0,
-  //   column: 11,
-  // },
+  {
+    ...functionPageKey,
+    key_name: 'f9',
+    param_name: -1,
+    hid_id: 66,
+    row: 0,
+    column: 10,
+  },
+  {
+    ...functionPageKey,
+    key_name: 'f10',
+    param_name: 1,
+    hid_id: 67,
+    row: 0,
+    column: 11,
+  },
   {
     ...moduleKey,
     key_name: 'f11',
@@ -567,10 +568,10 @@ const keys: IKey[] = [
   key_name: 'spacebar',
   commands: {
       on: (state,self)=>{
-        return [['XCONTROL', self.xControls[0]]]
+        return [['XCONTROL', parseXControl(self.xControls[0],self)]]
       },
       off: (state,self)=>{
-        return [['XCONTROL', self.xControls[1]]]
+        return [['XCONTROL', parseXControl(self.xControls[1],self)]]
       }
   },
   xControls: [
@@ -589,9 +590,9 @@ const keys: IKey[] = [
   commands: {
       on: (state,self)=>{
         if (state.modifiers.lctrl){
-          return [['XCONTROL', self.xControls[1]]]
+          return [['XCONTROL', parseXControl(self.xControls[1],self)]]
         }
-        return [['XCONTROL', self.xControls[0]]]
+        return [['XCONTROL', parseXControl(self.xControls[0],self)]]
       },
   },
   xControls: [
@@ -696,7 +697,7 @@ const keys: IKey[] = [
     xControls: ['toggle_input {param_name}'],
     commands: {
       on: (state, self) => {
-        return [['XCONTROL', self.xControls[0]]]
+        return [['XCONTROL', parseXControl(parseXControl(self.xControls[0],self),self)]]
       }
     },
     color: (state, self) => {
@@ -755,7 +756,7 @@ const keys: IKey[] = [
     xControls: ['toggle_metronome'],
     commands: {
       on: (state, self) => {
-        return [['XCONTROL', self.xControls[0]]]
+        return [['XCONTROL', parseXControl(self.xControls[0],self)]]
       }
     },
     color: (state, self) => {
@@ -775,7 +776,7 @@ const keys: IKey[] = [
   ],
   commands: {
     on: (state, self) => {
-      return [['XCONTROL', self.xControls[0]]]
+      return [['XCONTROL', parseXControl(self.xControls[0],self)]]
     }
   },
   color: (state, self) => {

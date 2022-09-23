@@ -1,7 +1,8 @@
 import rgbMap from "../rgb_map"
 import { State, IKey, Command } from "../types"
+import { parseXControl } from "./key_map"
 
-const functionKey = {
+const moduleKey = {
   xControls: [
     'target_module {param_name}',
     'clear_module {param_name}'
@@ -9,13 +10,13 @@ const functionKey = {
   commands: {
     on: (state: State, self: IKey): Command[] => {
       if (state.modifiers.lctrl) {
-        return [['XCONTROL', self.xControls[1]]]
+        return [['XCONTROL', parseXControl(self.xControls[1],self)]]
       }
       if(state.ableton.active_modules[self.param_name] == undefined){
         return [['SELECT_MODULE', [self.param_name]]]
       }
-      return [['XCONTROL', self.xControls[0]]]
-
+      console.log('wee')
+      return [['XCONTROL', parseXControl(self.xControls[0],self)]]
     },
     off: (state: State, self: IKey): Command[] => {
       return []
@@ -33,4 +34,4 @@ const functionKey = {
   }
 }
 
-export default functionKey
+export default moduleKey

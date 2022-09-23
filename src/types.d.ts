@@ -34,6 +34,8 @@ export type CommandTypes =
 	'FLUSH_MIDI' |
   'SELECT_MODULE' |
 	'TOGGLE_AS' |
+  'INSTRUMENT_PAGE' |
+  'MODULE_PAGE' |
 	'NONE'
 
 export type Command = [CommandTypes, any] 
@@ -54,7 +56,11 @@ export interface State {
 	activeModules: {
 		A: boolean
 		B: boolean
-	}
+	},
+  instrumentPage: number
+  modulePage: number
+  pageSize: number
+  maxPages: number
 }
 
 export interface HidEvent {

@@ -1,5 +1,5 @@
 import { State, RGB } from './types'
-import keyMap from './key_functions/key_map'
+import {keyMap} from './key_functions/key_map'
 
 const ffi = require('ffi')
 const ref = require('ref')
