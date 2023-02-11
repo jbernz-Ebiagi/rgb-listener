@@ -22,10 +22,12 @@ const toggleEbiagi = (emptyParam, state: State, modules) => {
 let caffeine:ChildProcess
 
 const _enable = (state: State, modules) => {
+  console.log('set active state 1')
   exec('sudo pmset -b sleep 0; sudo pmset -b disablesleep 1sudo pmset -b sleep 0; sudo pmset -b disablesleep 1',)
   modules.hidBlocker.block()
   modules.wootingRGB.start(state)
   modules.abletonSocket.start(state)
+  console.log('set active state 2')
   state.active = true
 }
 

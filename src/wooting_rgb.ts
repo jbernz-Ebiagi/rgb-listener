@@ -1,8 +1,8 @@
 import { State, RGB } from './types'
 import {keyMap} from './key_functions/key_map'
 
-const ffi = require('ffi')
-const ref = require('ref')
+const ffi = require('ffi-napi')
+const ref = require('ref-napi')
 
 // Define the functions from the rgb sdk
 // @ts-ignore
@@ -38,6 +38,7 @@ export default () => {
                 try{
                     const colorArray = _newColorArray()
                     for(const key of keyMap){
+                        // console.log(colorArray[key.row])
                         colorArray[key.row][key.column] = key.color(state, key)
                     }
                     _update(colorArray)

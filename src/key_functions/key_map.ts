@@ -760,10 +760,32 @@ const keys: IKey[] = [
       }
     },
     color: (state, self) => {
-      if (state.ableton.metronome){
-        return rgbMap['blue'][1]
+      
+      let color = 'dark'
+      let measure = state.ableton.measure
+      if (state.ableton.beat > 4.5){
+        measure += 1
+        measure = measure % 4
       }
+      if (measure == 1){
+        color = 'red'
+      }
+      else if (measure == 2 || measure == 0){
+        color = 'purple'
+      }
+      else if (measure == 3){
+        color = 'blue'
+      }
+      if ((state.ableton.beat > 1 && state.ableton.beat < 1.5) || state.ableton.beat > 4.5) {
+        return rgbMap[color][1]
+      } 
+
+      if (state.ableton.metronome){
+        return rgbMap['blue'][0]
+      }
+
       return rgbMap['dark'][0]
+
     },
     hid_id: 70,
     row: 0,

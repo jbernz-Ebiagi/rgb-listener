@@ -29,6 +29,6 @@ fs.writeFile(path.resolve(__dirname, '../dist/X-Controls.txt'), xcontrols, () =>
     console.log('--create xcontrols txt in dist');
 });
 
-fs.writeFile('/Users/justin/nativeKONTROL/ClyphX_Pro/X-Controls.txt', xcontrols, () => {
-    console.log('--create xcontrols in working dir');
-});
+// fs.writeFile('/Users/justin/nativeKONTROL/ClyphX_Pro/X-Controls.txt', xcontrols, () => {
+//     console.log('--create xcontrols in working dir');
+// });

@@ -26,6 +26,8 @@ export default () => {
                     // console.log(data)
                     state.ableton = data
                 }
+                //Send to GUI
+                client.send(msg, 0, msg.length, 9006, HOST);
             }
             catch(e){
                 console.log(e)

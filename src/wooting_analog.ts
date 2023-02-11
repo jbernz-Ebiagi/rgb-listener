@@ -1,9 +1,9 @@
 import { HidEvent } from './types'
 
-const ffi = require('ffi')
-const ref = require('ref')
-const Struct = require('ref-struct')
-var ArrayType = require('ref-array')
+const ffi = require('ffi-napi')
+const ref = require('ref-napi')
+const Struct = require('ref-struct-napi')
+var ArrayType = require('ref-array-napi')
 
 const DeviceInfo = Struct({
   vendor_id: 'ushort',

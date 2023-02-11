@@ -14,11 +14,16 @@ export default () => {
 
     const block = () => {
         console.log('set hid blocking true')
-        for (const device of devices()){
-            if(device.product == DEVICE && device.interface == DEVICE_INTERFACE){
-                hid = new HID(device.path);
-                console.log('connected to keyboard hid')
+        try{
+            for (const device of devices()){
+                console.log(device)
+                if(device.product == DEVICE && device.interface == DEVICE_INTERFACE){
+                    hid = new HID(device.path);
+                    console.log('connected to keyboard hid')
+                }
             }
+        } catch (e) {
+            console.log(e)
         }
     }
 

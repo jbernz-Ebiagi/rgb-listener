@@ -87,4 +87,8 @@ interface AbletonData {
 	  A?: {color: string}
 	  B?: {color: string}
   }
+  beat: number,
+  measure: number,
+  module_name: string,
+  knobs: {name: string, color: string, value: number}[]
 }
