@@ -102,6 +102,18 @@ const pageModule = (param:number, state:State) => {
   }
 }
 
+const pageSection = (param:number, state:State) => {
+  const maxPages = Math.floor(state.ableton.sections.length/state.sectionPageSize)+1
+  if (state.sectionPage + param >= 0 && state.sectionPage + param < maxPages){
+    state.sectionPage += param
+  }
+  console.log(state)
+}
+
+const setTwisterBank = (param:number, state:State) => {
+  state.twisterBank = param
+}
+
 const commandMap : {
   [K in CommandTypes]: (param: any, state: State, modules, velocity?: number) => void
 } = {
@@ -117,6 +129,8 @@ const commandMap : {
   'TOGGLE_AS': toggleAS,
   'INSTRUMENT_PAGE': pageInstrument,
   'MODULE_PAGE': pageModule,
+  'SECTION_PAGE': pageSection,
+  'SET_TWISTER_BANK': setTwisterBank,
   'NONE': () => {return}
 }
 

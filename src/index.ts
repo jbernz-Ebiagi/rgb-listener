@@ -25,7 +25,8 @@ const Ebiagi = () => {
     ableton: {
       clips: [],
       inputs: {},
-      snaps: [],
+      // snaps: [],
+      sections: [],
       globalLoop: {},
       mfx: [],
       instr: [],
@@ -35,7 +36,6 @@ const Ebiagi = () => {
       metronome: false,
       smart_record: {},
       woot_arp: {device_on: 0},
-      active_crossfade: false,
       active_modules: {},
       beat: 0,
       measure: 0,
@@ -52,7 +52,11 @@ const Ebiagi = () => {
     instrumentPage: 0,
     modulePage: 0,
     pageSize: 8,
-    maxPages: 4
+    maxPages: 4,
+    sectionPage: 0,
+    sectionPageSize: 3,
+    maxSectionPages: 12,
+    twisterBank: 0
   }
 
   const modules = {

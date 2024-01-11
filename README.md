@@ -7,3 +7,4 @@ In order to get working on M1:
 5. Copy libwooting_analog_sdk.dylib to /usr/local/lib
 6. Copy WootingAnalogPlugins to /Library
 7. Install python 2
+8. Use npm 14

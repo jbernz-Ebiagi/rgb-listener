@@ -23,6 +23,9 @@
 		},
 		{
 			"path": "../../serialmidi"
+		},
+		{
+			"path": "../../../../../../../Applications/Ableton Live 11 Suite.app/Contents/App-Resources/MIDI Remote Scripts/audio_swift"
 		}
 	]
 }

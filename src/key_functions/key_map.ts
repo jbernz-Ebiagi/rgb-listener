@@ -6,6 +6,8 @@ import tildeKey from './tilde_key'
 import functionKey from './function_key'
 import octaveKey from './octave_key'
 import snapKey from './snap_key'
+import sectionKey from './section_key'
+import sectionPageKey from './section_page_key'
 import recallKey from './recall_key';
 import moduleKey from './module_key'
 import functionPageKey from './function_page_key'
@@ -485,52 +487,58 @@ const keys: IKey[] = [
     column: 13,
   },
   {
-    ...snapKey,
+    ...sectionKey,
     key_name: 'insert',
     param_name: 0,
     hid_id: 73,
     row: 1,
     column: 14,
+    sectionPageable: true
   },
   {
-    ...snapKey,
+    ...sectionKey,
     key_name: 'home',
     param_name: 1,
     hid_id: 74,
     row: 1,
     column: 15,
+    sectionPageable: true
   },
   {
-    ...snapKey,
+    ...sectionKey,
     key_name: 'page_up',
     param_name: 2,
     hid_id: 75,
     row: 1,
     column: 16,
+    sectionPageable: true
   },
   {
-    ...snapKey,
+    ...sectionKey,
     key_name: 'delete',
     param_name: 3,
     hid_id: 76,
     row: 2,
     column: 14,
+    sectionPageable: true
   },
   {
-    ...snapKey,
+    ...sectionKey,
     key_name: 'end',
     param_name: 4,
     hid_id: 77,
     row: 2,
     column: 15,
+    sectionPageable: true
   },
   {
-    ...snapKey,
+    ...sectionKey,
     key_name: 'page_down',
     param_name: 5,
     hid_id: 78,
     row: 2,
     column: 16,
+    sectionPageable: true
   },
   {
     ...recallKey,
@@ -541,17 +549,17 @@ const keys: IKey[] = [
     column: 14,
 },
 {
-  ...recallKey,
+  ...sectionPageKey,
     key_name: 'down_arrow',
-    param_name: 4,
+    param_name: 1,
     hid_id: 81,
     row: 5,
     column: 15,
 },
 {
-  ...recallKey,
+  ...sectionPageKey,
     key_name: 'up_arrow',
-    param_name: 0,
+    param_name: -1,
     hid_id: 82,
     row: 4,
     column: 15,
@@ -794,16 +802,20 @@ const keys: IKey[] = [
 {
   key_name: 'print_screen',
   xControls: [
-    "start_crossfade",
+    "switch_twister_bank 0",
+    "switch_twister_bank 1",
   ],
   commands: {
     on: (state, self) => {
-      return [['XCONTROL', parseXControl(self.xControls[0],self)]]
+      if(state.twisterBank == 1){
+        return [['XCONTROL', parseXControl(self.xControls[0],self)], ['SET_TWISTER_BANK', 0]]
+      } else {
+        return [['XCONTROL', parseXControl(self.xControls[1],self)], ['SET_TWISTER_BANK', 1]]
+      }
     }
   },
   color: (state, self) => {
-    const loop = state.ableton.active_crossfade
-    if(state.ableton.active_crossfade){
+    if(state.twisterBank == 1){
       return rgbMap['red'][2]
     }
     return rgbMap['dark'][0]
@@ -827,6 +839,8 @@ export const parseXControl = (control: string, key: IKey, page?: number, pageSiz
 const parseKey = (key: IKey) => {
   const pageSize = 8
   const pageMax = 4
+  const sectionPageSize = 3
+  const sectionPageMax = 4
   const parsedXControls:string[] = []
   if (key.xControls) {
     for (let i = 0; i < key.xControls.length; i++) {
@@ -837,7 +851,13 @@ const parseKey = (key: IKey) => {
       } else{
         parsedXControls.push(parseXControl(key.xControls[i], key))
       }
-
+      if(key.sectionPageable){
+        for(let n = 0; n < sectionPageMax; n++){
+          parsedXControls.push(parseXControl(key.xControls[i], key, n, sectionPageSize))
+        }
+      } else{
+        parsedXControls.push(parseXControl(key.xControls[i], key))
+      }
     }
   }
   return { ...key, parsedXControls: parsedXControls }

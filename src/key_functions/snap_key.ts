@@ -2,7 +2,7 @@ import rgbMap from "../rgb_map"
 import { State, IKey, Command } from "../types"
 import { parseXControl } from "./key_map"
 
-const octaveKey = {
+const snapKey = {
   xControls: [
     "select_snap {param_name}",
     "assign_snap {param_name}",
@@ -51,4 +51,4 @@ const octaveKey = {
   }
 }
 
-export default octaveKey
+export default snapKey

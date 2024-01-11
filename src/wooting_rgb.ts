@@ -38,7 +38,6 @@ export default () => {
                 try{
                     const colorArray = _newColorArray()
                     for(const key of keyMap){
-                        // console.log(colorArray[key.row])
                         colorArray[key.row][key.column] = key.color(state, key)
                     }
                     _update(colorArray)

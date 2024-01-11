@@ -11,7 +11,8 @@ export interface IKey {
 	midi_note?: number;
 	row: number;
 	column: number;
-  pageable?: boolean;
+  	pageable?: boolean;
+	sectionPageable?: boolean;
 }
 
 export type ModifierTypes =
@@ -32,10 +33,12 @@ export type CommandTypes =
 	'TOGGLE_EBIAGI' |
 	'CHANGE_OCTAVE' |
 	'FLUSH_MIDI' |
-  'SELECT_MODULE' |
+  	'SELECT_MODULE' |
 	'TOGGLE_AS' |
-  'INSTRUMENT_PAGE' |
-  'MODULE_PAGE' |
+  	'INSTRUMENT_PAGE' |
+  	'MODULE_PAGE' |
+	'SECTION_PAGE' |
+	'SET_TWISTER_BANK' |
 	'NONE'
 
 export type Command = [CommandTypes, any] 
@@ -57,10 +60,14 @@ export interface State {
 		A: boolean
 		B: boolean
 	},
-  instrumentPage: number
-  modulePage: number
-  pageSize: number
-  maxPages: number
+	instrumentPage: number
+	modulePage: number
+	pageSize: number
+	maxPages: number
+	sectionPage: number
+	sectionPageSize: number
+	maxSectionPages: number
+	twisterBank: number
 }
 
 export interface HidEvent {
@@ -72,7 +79,8 @@ export interface HidEvent {
 interface AbletonData {
   clips: [],
   inputs: {},
-  snaps: [],
+//   snaps: [],
+  sections: [],
   globalLoop: {color?: string, brightness?: number},
   mfx: [],
   instr: [],
@@ -82,7 +90,6 @@ interface AbletonData {
   metronome: boolean,
   smart_record: {color?: string, brightness?: number}
   woot_arp: {device_on: number}
-  active_crossfade: boolean
   active_modules: {
 	  A?: {color: string}
 	  B?: {color: string}
